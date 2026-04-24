@@ -6,7 +6,7 @@
   "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/todo/issues",
   "author": "Thomas Bray",
   "packageUrl": "https://github.com/Midtown-Technology-Group/todo",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "licenseUrl": "https://github.com/Midtown-Technology-Group/todo/blob/main/LICENSE",
   "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
   "shortDescription": "Windows-first Microsoft To Do tool for Midtown's toy chest",

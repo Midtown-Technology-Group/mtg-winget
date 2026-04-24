@@ -9,7 +9,7 @@ PublisherSupportUrl: https://github.com/Midtown-Technology-Group/todo/issues
 Author: Thomas Bray
 PackageName: Todo
 PackageUrl: https://github.com/Midtown-Technology-Group/todo
-License: MIT
+License: GPL-3.0-or-later
 LicenseUrl: https://github.com/Midtown-Technology-Group/todo/blob/main/LICENSE
 Copyright: Copyright (c) 2026 Midtown Technology Group LLC
 ShortDescription: Windows-first Microsoft To Do tool for Midtown's toy chest
