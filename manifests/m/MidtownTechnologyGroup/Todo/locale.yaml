@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.Todo
+PackageVersion: 0.1.0
+PackageLocale: en-US
+Publisher: Midtown Technology Group LLC
+PublisherUrl: https://midtowntg.com
+PublisherSupportUrl: https://github.com/Midtown-Technology-Group/todo/issues
+Author: Thomas Bray
+PackageName: Todo
+PackageUrl: https://github.com/Midtown-Technology-Group/todo
+License: MIT
+LicenseUrl: https://github.com/Midtown-Technology-Group/todo/blob/main/LICENSE
+Copyright: Copyright (c) 2026 Midtown Technology Group LLC
+ShortDescription: Windows-first Microsoft To Do tool for Midtown's toy chest
+Description: |
+  Todo is a Windows-first Microsoft To Do companion for Midtown's toy chest. It uses shared Microsoft Graph authentication, supports interactive or JSON output, and starts in read-only mode by default.
+Moniker: todo
+Tags:
+  - todo
+  - microsoft-todo
+  - graph-api
+  - productivity
+  - midtown
+ReleaseNotes: |
+  Initial Winget pilot release for Todo.
+ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/todo/releases/tag/v0.1.0
+ManifestType: defaultLocale
+ManifestVersion: 1.5.0

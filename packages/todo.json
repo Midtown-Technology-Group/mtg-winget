@@ -1,0 +1,31 @@
+{
+  "packageIdentifier": "MidtownTechnologyGroup.Todo",
+  "packageName": "Todo",
+  "publisher": "Midtown Technology Group LLC",
+  "publisherUrl": "https://midtowntg.com",
+  "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/todo/issues",
+  "author": "Thomas Bray",
+  "packageUrl": "https://github.com/Midtown-Technology-Group/todo",
+  "license": "MIT",
+  "licenseUrl": "https://github.com/Midtown-Technology-Group/todo/blob/main/LICENSE",
+  "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+  "shortDescription": "Windows-first Microsoft To Do tool for Midtown's toy chest",
+  "description": "Todo is a Windows-first Microsoft To Do companion for Midtown's toy chest. It uses shared Microsoft Graph authentication, supports interactive or JSON output, and starts in read-only mode by default.",
+  "moniker": "todo",
+  "tags": [
+    "todo",
+    "microsoft-todo",
+    "graph-api",
+    "productivity",
+    "midtown"
+  ],
+  "releaseNotes": "Initial Winget pilot release for Todo.",
+  "repo": "Midtown-Technology-Group/todo",
+  "assetName": "todo.msi",
+  "architecture": "x64",
+  "installerType": "msi",
+  "scope": "machine",
+  "upgradeBehavior": "install",
+  "silent": "/qn",
+  "silentWithProgress": "/qb"
+}

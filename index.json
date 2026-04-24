@@ -1,0 +1,21 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "packages": [
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.Todo",
+      "PackageName": "Todo",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "0.1.0",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "Todo",
+            "ShortDescription": "Windows-first Microsoft To Do tool for Midtown's toy chest"
+          }
+        }
+      ]
+    }
+  ]
+}

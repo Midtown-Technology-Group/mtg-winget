@@ -1,0 +1,74 @@
+name: Update Package
+
+on:
+  repository_dispatch:
+    types: [update-package]
+  workflow_dispatch:
+    inputs:
+      package_key:
+        description: Package key in packages/
+        required: true
+      version:
+        description: Package version
+        required: true
+      installer_url:
+        description: MSI download URL
+        required: true
+      sha256:
+        description: Installer SHA256
+        required: true
+      product_code:
+        description: MSI ProductCode
+        required: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set package metadata
+        id: payload
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            echo "package_key=${{ github.event.client_payload.package_key }}" >> "$GITHUB_OUTPUT"
+            echo "version=${{ github.event.client_payload.version }}" >> "$GITHUB_OUTPUT"
+            echo "installer_url=${{ github.event.client_payload.installer_url }}" >> "$GITHUB_OUTPUT"
+            echo "sha256=${{ github.event.client_payload.sha256 }}" >> "$GITHUB_OUTPUT"
+            echo "product_code=${{ github.event.client_payload.product_code }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "package_key=${{ inputs.package_key }}" >> "$GITHUB_OUTPUT"
+            echo "version=${{ inputs.version }}" >> "$GITHUB_OUTPUT"
+            echo "installer_url=${{ inputs.installer_url }}" >> "$GITHUB_OUTPUT"
+            echo "sha256=${{ inputs.sha256 }}" >> "$GITHUB_OUTPUT"
+            echo "product_code=${{ inputs.product_code }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Update package manifests
+        run: |
+          python scripts/update_package.py \
+            "${{ steps.payload.outputs.package_key }}" \
+            "${{ steps.payload.outputs.version }}" \
+            "${{ steps.payload.outputs.installer_url }}" \
+            "${{ steps.payload.outputs.sha256 }}" \
+            "${{ steps.payload.outputs.product_code }}"
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.json manifests packageManifests
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Update ${{ steps.payload.outputs.package_key }} to ${{ steps.payload.outputs.version }}"
+          git push
