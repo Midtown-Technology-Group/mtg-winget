@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.Todo
+PackageVersion: 0.1.1
+MinimumOSVersion: 10.0.0.0
+InstallerType: msi
+Scope: machine
+UpgradeBehavior: install
+ProductCode: '{BA0EAE84-A987-4E7B-BB23-DE16555AA2CA}'
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/Midtown-Technology-Group/todo/releases/download/v0.1.1/todo.msi
+    InstallerSha256: f53b46f7f2fe0466d6e75131d73f3f40aa2e1e5f85ab772e91e750fc79293917
+    InstallerSwitches:
+      Silent: /qn
+      SilentWithProgress: /qb
+ManifestType: installer
+ManifestVersion: 1.5.0

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.Todo",
+    "versions": [
+      {
+        "packageVersion": "0.1.1",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/todo/issues",
+          "author": "Thomas Bray",
+          "packageName": "Todo",
+          "packageUrl": "https://github.com/Midtown-Technology-Group/todo",
+          "license": "GPL-3.0-or-later",
+          "licenseUrl": "https://github.com/Midtown-Technology-Group/todo/blob/main/LICENSE",
+          "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+          "shortDescription": "Windows-first Microsoft To Do tool for Midtown's toy chest",
+          "description": "Todo is a Windows-first Microsoft To Do companion for Midtown's toy chest. It uses shared Microsoft Graph authentication, supports interactive or JSON output, and starts in read-only mode by default.",
+          "moniker": "todo",
+          "tags": [
+            "todo",
+            "microsoft-todo",
+            "graph-api",
+            "productivity",
+            "midtown"
+          ],
+          "releaseNotes": "Initial Winget pilot release for Todo.",
+          "releaseNotesUrl": "https://github.com/Midtown-Technology-Group/todo/releases/tag/v0.1.1"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "msi",
+            "scope": "machine",
+            "installerUrl": "https://github.com/Midtown-Technology-Group/todo/releases/download/v0.1.1/todo.msi",
+            "installerSha256": "f53b46f7f2fe0466d6e75131d73f3f40aa2e1e5f85ab772e91e750fc79293917",
+            "productCode": "{BA0EAE84-A987-4E7B-BB23-DE16555AA2CA}",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
