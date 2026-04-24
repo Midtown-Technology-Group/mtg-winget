@@ -26,6 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: write
     steps:
       - uses: actions/checkout@v4
 
@@ -72,3 +73,9 @@ jobs:
           fi
           git commit -m "Update ${{ steps.payload.outputs.package_key }} to ${{ steps.payload.outputs.version }}"
           git push
+
+      - name: Dispatch feed deploy
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy-feed.yml --ref main
