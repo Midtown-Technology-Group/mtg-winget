@@ -1,0 +1,31 @@
+{
+  "packageIdentifier": "MidtownTechnologyGroup.CommunicationStyle",
+  "packageName": "Communication Style",
+  "publisher": "Midtown Technology Group LLC",
+  "publisherUrl": "https://midtowntg.com",
+  "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/communication-style/issues",
+  "author": "Thomas Bray",
+  "packageUrl": "https://github.com/Midtown-Technology-Group/communication-style",
+  "license": "GPL-3.0-or-later",
+  "licenseUrl": "https://github.com/Midtown-Technology-Group/communication-style/blob/main/LICENSE",
+  "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+  "shortDescription": "Build local communication style guides from Teams and Sent Items",
+  "description": "Communication Style builds local communication style guides from delegated Microsoft Graph mail and Teams samples, including era and participant-focused cuts.",
+  "moniker": "communication-style",
+  "tags": [
+    "communication",
+    "microsoft-graph",
+    "teams",
+    "mail",
+    "midtown"
+  ],
+  "releaseNotes": "Initial MSI release for Communication Style.",
+  "repo": "Midtown-Technology-Group/communication-style",
+  "assetName": "communication-style.msi",
+  "architecture": "x64",
+  "installerType": "msi",
+  "scope": "machine",
+  "upgradeBehavior": "install",
+  "silent": "/qn",
+  "silentWithProgress": "/qb"
+}

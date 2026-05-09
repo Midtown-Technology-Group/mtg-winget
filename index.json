@@ -16,6 +16,22 @@
           }
         }
       ]
+    },
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.CommunicationStyle",
+      "PackageName": "Communication Style",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "0.1.0",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "Communication Style",
+            "ShortDescription": "Build local communication style guides from Teams and Sent Items"
+          }
+        }
+      ]
     }
   ]
 }

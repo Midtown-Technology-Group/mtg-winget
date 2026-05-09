@@ -30,10 +30,11 @@ def main() -> int:
     package_id = package_meta["packageIdentifier"]
     package_name = package_meta["packageName"]
     publisher = package_meta["publisher"]
+    package_namespace, package_leaf = package_id.split(".", 1)
 
-    manifest_dir = SOURCE_ROOT / "manifests" / package_id[0].lower() / "MidtownTechnologyGroup" / package_name
+    manifest_dir = SOURCE_ROOT / "manifests" / package_id[0].lower() / package_namespace / package_leaf
     package_manifest_dir = (
-        SOURCE_ROOT / "packageManifests" / package_id[0].lower() / "MidtownTechnologyGroup" / package_name
+        SOURCE_ROOT / "packageManifests" / package_id[0].lower() / package_namespace / package_leaf
     )
     manifest_dir.mkdir(parents=True, exist_ok=True)
     package_manifest_dir.mkdir(parents=True, exist_ok=True)

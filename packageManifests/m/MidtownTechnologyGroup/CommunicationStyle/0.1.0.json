@@ -1,0 +1,50 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.CommunicationStyle",
+    "versions": [
+      {
+        "packageVersion": "0.1.0",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/communication-style/issues",
+          "author": "Thomas Bray",
+          "packageName": "Communication Style",
+          "packageUrl": "https://github.com/Midtown-Technology-Group/communication-style",
+          "license": "GPL-3.0-or-later",
+          "licenseUrl": "https://github.com/Midtown-Technology-Group/communication-style/blob/main/LICENSE",
+          "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+          "shortDescription": "Build local communication style guides from Teams and Sent Items",
+          "description": "Communication Style builds local communication style guides from delegated Microsoft Graph mail and Teams samples, including era and participant-focused cuts.",
+          "moniker": "communication-style",
+          "tags": [
+            "communication",
+            "microsoft-graph",
+            "teams",
+            "mail",
+            "midtown"
+          ],
+          "releaseNotes": "Initial MSI release for Communication Style.",
+          "releaseNotesUrl": "https://github.com/Midtown-Technology-Group/communication-style/releases/tag/v0.1.0"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "msi",
+            "scope": "machine",
+            "installerUrl": "https://github.com/Midtown-Technology-Group/communication-style/releases/download/v0.1.0/communication-style.msi",
+            "installerSha256": "de11dc5339e07500e463f30d5bf2498c92db871ce3723fa9bf434f0ef66b239d",
+            "productCode": "{40E75B8B-C663-431B-976B-9407677CF06C}",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

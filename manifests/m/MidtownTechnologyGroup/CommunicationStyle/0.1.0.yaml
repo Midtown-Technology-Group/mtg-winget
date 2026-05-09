@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.CommunicationStyle
+PackageVersion: 0.1.0
+MinimumOSVersion: 10.0.0.0
+InstallerType: msi
+Scope: machine
+UpgradeBehavior: install
+ProductCode: '{40E75B8B-C663-431B-976B-9407677CF06C}'
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/Midtown-Technology-Group/communication-style/releases/download/v0.1.0/communication-style.msi
+    InstallerSha256: de11dc5339e07500e463f30d5bf2498c92db871ce3723fa9bf434f0ef66b239d
+    InstallerSwitches:
+      Silent: /qn
+      SilentWithProgress: /qb
+ManifestType: installer
+ManifestVersion: 1.5.0
