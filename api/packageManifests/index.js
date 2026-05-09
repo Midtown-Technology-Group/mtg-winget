@@ -3,7 +3,7 @@ const feed = require("../lib/feed");
 module.exports = async function (context, req) {
   const packageId = context.bindingData.PackageIdentifier;
   const version = req.query?.Version || req.query?.version;
-  const body = feed.packageManifest(packageId, version);
+  const body = await feed.packageManifest(packageId, version);
 
   context.res = body
     ? {

@@ -36,6 +36,21 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
+async function readJsonFromStaticSite(filePath) {
+  const relativePath = path.relative(DATA_ROOT, filePath).split(path.sep).join("/");
+  const host = process.env.WEBSITE_HOSTNAME;
+  if (!host) {
+    return null;
+  }
+
+  const res = await fetch(`https://${host}/${relativePath}`);
+  if (!res.ok) {
+    return null;
+  }
+
+  return res.json();
+}
+
 function response(data) {
   return { Data: data };
 }
@@ -127,7 +142,7 @@ function mapKeys(source, keyMap) {
   );
 }
 
-function packageManifest(packageId, version) {
+async function packageManifest(packageId, version) {
   const entry = packageIndex().find((pkg) => normalizePackageId(pkg.PackageIdentifier) === normalizePackageId(packageId));
   if (!entry) {
     return null;
@@ -135,11 +150,18 @@ function packageManifest(packageId, version) {
 
   const manifestVersion = version || latestVersion(entry);
   const manifestPath = packageManifestPath(entry.PackageIdentifier, manifestVersion);
-  if (!manifestPath || !fs.existsSync(manifestPath)) {
+  if (!manifestPath) {
     return null;
   }
 
-  const raw = readJson(manifestPath).data;
+  const manifest = fs.existsSync(manifestPath)
+    ? readJson(manifestPath)
+    : await readJsonFromStaticSite(manifestPath);
+  if (!manifest) {
+    return null;
+  }
+
+  const raw = manifest.data;
   return response({
     PackageIdentifier: raw.packageIdentifier,
     Versions: (raw.versions || []).map((item) => ({
