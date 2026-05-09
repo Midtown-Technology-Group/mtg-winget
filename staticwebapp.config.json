@@ -17,7 +17,14 @@
     },
     {
       "route": "/information",
-      "rewrite": "/api/information",
+      "rewrite": "/information.json",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    {
+      "route": "/api/information",
+      "rewrite": "/information.json",
       "headers": {
         "Content-Type": "application/json"
       }
