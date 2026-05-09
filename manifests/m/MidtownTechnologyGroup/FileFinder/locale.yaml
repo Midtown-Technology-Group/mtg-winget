@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.FileFinder
+PackageVersion: 0.1.0
+PackageLocale: en-US
+Publisher: Midtown Technology Group LLC
+PublisherUrl: https://midtowntg.com
+PublisherSupportUrl: https://github.com/Midtown-Technology-Group/file-finder/issues
+Author: Thomas Bray
+PackageName: File Finder
+PackageUrl: https://github.com/Midtown-Technology-Group/file-finder
+License: GPL-3.0-or-later
+LicenseUrl: https://github.com/Midtown-Technology-Group/file-finder/blob/main/LICENSE
+Copyright: Copyright (c) 2026 Midtown Technology Group LLC
+ShortDescription: Microsoft 365 file discovery and focused OneDrive actions through delegated Graph
+Description: |
+  File Finder provides Microsoft 365 file discovery and focused OneDrive actions through delegated Microsoft Graph.
+Moniker: file-finder
+Tags:
+  - files
+  - onedrive
+  - microsoft-graph
+  - microsoft-365
+  - midtown
+ReleaseNotes: |
+  Initial MSI release for File Finder.
+ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/file-finder/releases/tag/v0.1.0
+ManifestType: defaultLocale
+ManifestVersion: 1.5.0

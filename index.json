@@ -32,6 +32,54 @@
           }
         }
       ]
+    },
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.MailTriage",
+      "PackageName": "Mail Triage",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "0.1.0",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "Mail Triage",
+            "ShortDescription": "Inbox triage with compact JSON output for notification and follow-up workflows"
+          }
+        }
+      ]
+    },
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.CalendarGlance",
+      "PackageName": "Calendar Glance",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "0.1.0",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "Calendar Glance",
+            "ShortDescription": "Read-only Microsoft 365 agenda snapshots for short-range planning and meeting context"
+          }
+        }
+      ]
+    },
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.FileFinder",
+      "PackageName": "File Finder",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "0.1.0",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "File Finder",
+            "ShortDescription": "Microsoft 365 file discovery and focused OneDrive actions through delegated Graph"
+          }
+        }
+      ]
     }
   ]
 }

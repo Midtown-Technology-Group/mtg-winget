@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.MailTriage
+PackageVersion: 0.1.0
+PackageLocale: en-US
+Publisher: Midtown Technology Group LLC
+PublisherUrl: https://midtowntg.com
+PublisherSupportUrl: https://github.com/Midtown-Technology-Group/mail-triage/issues
+Author: Thomas Bray
+PackageName: Mail Triage
+PackageUrl: https://github.com/Midtown-Technology-Group/mail-triage
+License: GPL-3.0-or-later
+LicenseUrl: https://github.com/Midtown-Technology-Group/mail-triage/blob/main/LICENSE
+Copyright: Copyright (c) 2026 Midtown Technology Group LLC
+ShortDescription: Inbox triage with compact JSON output for notification and follow-up workflows
+Description: |
+  Mail Triage provides Microsoft 365 inbox triage and delegated mail actions for Midtown operator workflows.
+Moniker: mail-triage
+Tags:
+  - mail
+  - microsoft-graph
+  - microsoft-365
+  - productivity
+  - midtown
+ReleaseNotes: |
+  Initial MSI release for Mail Triage.
+ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/mail-triage/releases/tag/v0.1.0
+ManifestType: defaultLocale
+ManifestVersion: 1.5.0

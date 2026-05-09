@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.CalendarGlance
+PackageVersion: 0.1.0
+PackageLocale: en-US
+Publisher: Midtown Technology Group LLC
+PublisherUrl: https://midtowntg.com
+PublisherSupportUrl: https://github.com/Midtown-Technology-Group/calendar-glance/issues
+Author: Thomas Bray
+PackageName: Calendar Glance
+PackageUrl: https://github.com/Midtown-Technology-Group/calendar-glance
+License: GPL-3.0-or-later
+LicenseUrl: https://github.com/Midtown-Technology-Group/calendar-glance/blob/main/LICENSE
+Copyright: Copyright (c) 2026 Midtown Technology Group LLC
+ShortDescription: Read-only Microsoft 365 agenda snapshots for short-range planning and meeting context
+Description: |
+  Calendar Glance provides read-only Microsoft 365 agenda snapshots for short-range planning and meeting context.
+Moniker: calendar-glance
+Tags:
+  - calendar
+  - microsoft-graph
+  - microsoft-365
+  - planning
+  - midtown
+ReleaseNotes: |
+  Initial MSI release for Calendar Glance.
+ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/calendar-glance/releases/tag/v0.1.0
+ManifestType: defaultLocale
+ManifestVersion: 1.5.0

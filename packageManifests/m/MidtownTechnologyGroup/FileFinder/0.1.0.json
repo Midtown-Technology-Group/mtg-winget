@@ -1,0 +1,50 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.FileFinder",
+    "versions": [
+      {
+        "packageVersion": "0.1.0",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/file-finder/issues",
+          "author": "Thomas Bray",
+          "packageName": "File Finder",
+          "packageUrl": "https://github.com/Midtown-Technology-Group/file-finder",
+          "license": "GPL-3.0-or-later",
+          "licenseUrl": "https://github.com/Midtown-Technology-Group/file-finder/blob/main/LICENSE",
+          "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+          "shortDescription": "Microsoft 365 file discovery and focused OneDrive actions through delegated Graph",
+          "description": "File Finder provides Microsoft 365 file discovery and focused OneDrive actions through delegated Microsoft Graph.",
+          "moniker": "file-finder",
+          "tags": [
+            "files",
+            "onedrive",
+            "microsoft-graph",
+            "microsoft-365",
+            "midtown"
+          ],
+          "releaseNotes": "Initial MSI release for File Finder.",
+          "releaseNotesUrl": "https://github.com/Midtown-Technology-Group/file-finder/releases/tag/v0.1.0"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "msi",
+            "scope": "machine",
+            "installerUrl": "https://github.com/Midtown-Technology-Group/file-finder/releases/download/v0.1.0/file-finder.msi",
+            "installerSha256": "12adf65666c94ead160d358ea17ee5aea77b141790c1c0e4745262ce2ff537ff",
+            "productCode": "{5953A087-F8C0-48C1-9639-13429237AC2E}",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

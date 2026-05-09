@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.FileFinder
+PackageVersion: 0.1.0
+MinimumOSVersion: 10.0.0.0
+InstallerType: msi
+Scope: machine
+UpgradeBehavior: install
+ProductCode: '{5953A087-F8C0-48C1-9639-13429237AC2E}'
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/Midtown-Technology-Group/file-finder/releases/download/v0.1.0/file-finder.msi
+    InstallerSha256: 12adf65666c94ead160d358ea17ee5aea77b141790c1c0e4745262ce2ff537ff
+    InstallerSwitches:
+      Silent: /qn
+      SilentWithProgress: /qb
+ManifestType: installer
+ManifestVersion: 1.5.0
