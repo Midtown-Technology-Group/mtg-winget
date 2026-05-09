@@ -84,8 +84,12 @@ jobs:
       - name: Open package update pull request
         if: steps.commit.outputs.changed == 'true'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.MTG_WINGET_PR_TOKEN }}
         run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "MTG_WINGET_PR_TOKEN is required because GitHub Actions cannot create pull requests with GITHUB_TOKEN in this repository."
+            exit 1
+          fi
           gh pr create \
             --base main \
             --head "${{ steps.commit.outputs.branch }}" \
