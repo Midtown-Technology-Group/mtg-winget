@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.ContextSync
+PackageVersion: 1.0.0
+MinimumOSVersion: 10.0.0.0
+InstallerType: msi
+Scope: machine
+UpgradeBehavior: install
+ProductCode: '{1AFC5B16-0EA6-4616-8D7D-95FB3070E808}'
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/Midtown-Technology-Group/context-sync/releases/download/v1.0.0/work-context-sync.msi
+    InstallerSha256: fcf457fa69c3cbd09fb0152a268b1c9dd3c05e38f5dc492e39b019df1f3f350d
+    InstallerSwitches:
+      Silent: /qn
+      SilentWithProgress: /qb
+ManifestType: installer
+ManifestVersion: 1.5.0

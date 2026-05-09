@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.GtdDashboard
+PackageVersion: 0.1.0
+PackageLocale: en-US
+Publisher: Midtown Technology Group LLC
+PublisherUrl: https://midtowntg.com
+PublisherSupportUrl: https://github.com/Midtown-Technology-Group/gtd-dashboard/issues
+Author: Thomas Bray
+PackageName: GTD Dashboard
+PackageUrl: https://github.com/Midtown-Technology-Group/gtd-dashboard
+License: AGPL-3.0
+LicenseUrl: https://github.com/Midtown-Technology-Group/gtd-dashboard/blob/master/LICENSE
+Copyright: Copyright (c) 2026 Midtown Technology Group LLC
+ShortDescription: GTD Dashboard CLI for Logseq knowledge graphs
+Description: |
+  GTD Dashboard CLI for Logseq knowledge graphs
+Moniker: gtd-dashboard
+Tags:
+  - gtd
+  - logseq
+  - cli
+  - productivity
+  - midtown
+ReleaseNotes: |
+  Initial MSI release for GTD Dashboard.
+ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/gtd-dashboard/releases/tag/v0.1.0
+ManifestType: defaultLocale
+ManifestVersion: 1.5.0

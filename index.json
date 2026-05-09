@@ -80,6 +80,134 @@
           }
         }
       ]
+    },
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.ContextSync",
+      "PackageName": "Context Sync",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "1.0.0",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "Context Sync",
+            "ShortDescription": "Sync Microsoft 365 work context to LogSeq knowledge graph"
+          }
+        }
+      ]
+    },
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.Detour",
+      "PackageName": "Detour",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "0.1.3",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "Detour",
+            "ShortDescription": "Track the work you did to get back to the work you meant to do."
+          }
+        }
+      ]
+    },
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.GtdDashboard",
+      "PackageName": "GTD Dashboard",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "0.1.0",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "GTD Dashboard",
+            "ShortDescription": "GTD Dashboard CLI for Logseq knowledge graphs"
+          }
+        }
+      ]
+    },
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.Halocli",
+      "PackageName": "Halocli",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "0.5.0",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "Halocli",
+            "ShortDescription": "Standalone HaloPSA CLI for safe operator and automation workflows"
+          }
+        }
+      ]
+    },
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.MeetingCostTracker",
+      "PackageName": "Meeting Cost Tracker",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "0.1.0",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "Meeting Cost Tracker",
+            "ShortDescription": "Track the real cost of Microsoft Teams meetings by participant time"
+          }
+        }
+      ]
+    },
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.QuickCapture",
+      "PackageName": "Quick Capture",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "0.1.0",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "Quick Capture",
+            "ShortDescription": "Fast, frictionless capture for Logseq daily notes"
+          }
+        }
+      ]
+    },
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.TimeTracker",
+      "PackageName": "Time Tracker",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "0.1.0",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "Time Tracker",
+            "ShortDescription": "Track time on tasks with zero friction. Integrates with GTD workflows."
+          }
+        }
+      ]
+    },
+    {
+      "PackageIdentifier": "MidtownTechnologyGroup.WeeklyReview",
+      "PackageName": "Weekly Review",
+      "Publisher": "Midtown Technology Group LLC",
+      "Versions": [
+        {
+          "PackageVersion": "0.1.0",
+          "DefaultLocale": {
+            "PackageLocale": "en-US",
+            "Publisher": "Midtown Technology Group LLC",
+            "PackageName": "Weekly Review",
+            "ShortDescription": "Automated GTD weekly review generator for Logseq knowledge graphs"
+          }
+        }
+      ]
     }
   ]
 }

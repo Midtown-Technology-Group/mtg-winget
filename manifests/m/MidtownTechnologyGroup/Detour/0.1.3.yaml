@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.Detour
+PackageVersion: 0.1.3
+MinimumOSVersion: 10.0.0.0
+InstallerType: msi
+Scope: machine
+UpgradeBehavior: install
+ProductCode: '{303221BB-88BF-423D-96B4-2BA65C8F7BAC}'
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/Midtown-Technology-Group/detour/releases/download/v0.1.3/detour.msi
+    InstallerSha256: 8f676d4547a1d541fedf1be00f66654c4333f3dd6d8f4b2edc15c7aad49d8763
+    InstallerSwitches:
+      Silent: /qn
+      SilentWithProgress: /qb
+ManifestType: installer
+ManifestVersion: 1.5.0

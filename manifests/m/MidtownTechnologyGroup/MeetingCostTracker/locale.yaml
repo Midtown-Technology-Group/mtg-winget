@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.MeetingCostTracker
+PackageVersion: 0.1.0
+PackageLocale: en-US
+Publisher: Midtown Technology Group LLC
+PublisherUrl: https://midtowntg.com
+PublisherSupportUrl: https://github.com/Midtown-Technology-Group/meeting-cost-tracker/issues
+Author: Thomas Bray
+PackageName: Meeting Cost Tracker
+PackageUrl: https://github.com/Midtown-Technology-Group/meeting-cost-tracker
+License: AGPL-3.0
+LicenseUrl: https://github.com/Midtown-Technology-Group/meeting-cost-tracker/blob/master/LICENSE
+Copyright: Copyright (c) 2026 Midtown Technology Group LLC
+ShortDescription: Track the real cost of Microsoft Teams meetings by participant time
+Description: |
+  Track the real cost of Microsoft Teams meetings by participant time
+Moniker: mct
+Tags:
+  - teams
+  - time
+  - cli
+  - productivity
+  - midtown
+ReleaseNotes: |
+  Initial MSI release for Meeting Cost Tracker.
+ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/meeting-cost-tracker/releases/tag/v0.1.0
+ManifestType: defaultLocale
+ManifestVersion: 1.5.0

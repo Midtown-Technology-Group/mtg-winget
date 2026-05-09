@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.MeetingCostTracker
+PackageVersion: 0.1.0
+MinimumOSVersion: 10.0.0.0
+InstallerType: msi
+Scope: machine
+UpgradeBehavior: install
+ProductCode: '{B514BE90-5C07-46C5-BDD6-AB15779ED38C}'
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/Midtown-Technology-Group/meeting-cost-tracker/releases/download/v0.1.0/mct.msi
+    InstallerSha256: c32c225d2399c9d2493eac31a7e7e5b18af9ea1e21b3e97a73199901d93f52c9
+    InstallerSwitches:
+      Silent: /qn
+      SilentWithProgress: /qb
+ManifestType: installer
+ManifestVersion: 1.5.0

@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.WeeklyReview
+PackageVersion: 0.1.0
+PackageLocale: en-US
+Publisher: Midtown Technology Group LLC
+PublisherUrl: https://midtowntg.com
+PublisherSupportUrl: https://github.com/Midtown-Technology-Group/weekly-review/issues
+Author: Thomas Bray
+PackageName: Weekly Review
+PackageUrl: https://github.com/Midtown-Technology-Group/weekly-review
+License: AGPL-3.0
+LicenseUrl: https://github.com/Midtown-Technology-Group/weekly-review/blob/master/LICENSE
+Copyright: Copyright (c) 2026 Midtown Technology Group LLC
+ShortDescription: Automated GTD weekly review generator for Logseq knowledge graphs
+Description: |
+  Automated GTD weekly review generator for Logseq knowledge graphs
+Moniker: weekly-review
+Tags:
+  - gtd
+  - logseq
+  - cli
+  - productivity
+  - midtown
+ReleaseNotes: |
+  Initial MSI release for Weekly Review.
+ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/weekly-review/releases/tag/v0.1.0
+ManifestType: defaultLocale
+ManifestVersion: 1.5.0
