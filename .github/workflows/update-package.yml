@@ -27,6 +27,7 @@ jobs:
     permissions:
       contents: write
       actions: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
 
@@ -63,19 +64,30 @@ jobs:
             "${{ steps.payload.outputs.product_code }}"
 
       - name: Commit changes
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          branch="automation/update-${{ steps.payload.outputs.package_key }}-${{ steps.payload.outputs.version }}-${{ github.run_id }}"
+          git switch -c "$branch"
           git add index.json manifests packageManifests
           if git diff --cached --quiet; then
             echo "No changes to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git commit -m "Update ${{ steps.payload.outputs.package_key }} to ${{ steps.payload.outputs.version }}"
-          git push
+          git push --set-upstream origin "$branch"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
 
-      - name: Dispatch feed deploy
-        if: success()
+      - name: Open package update pull request
+        if: steps.commit.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run deploy-feed.yml --ref main
+        run: |
+          gh pr create \
+            --base main \
+            --head "${{ steps.commit.outputs.branch }}" \
+            --title "Update ${{ steps.payload.outputs.package_key }} to ${{ steps.payload.outputs.version }}" \
+            --body "Generated WinGet manifests for ${{ steps.payload.outputs.package_key }} ${{ steps.payload.outputs.version }}."

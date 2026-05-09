@@ -1,0 +1,50 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.CalendarGlance",
+    "versions": [
+      {
+        "packageVersion": "0.1.0",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/calendar-glance/issues",
+          "author": "Thomas Bray",
+          "packageName": "Calendar Glance",
+          "packageUrl": "https://github.com/Midtown-Technology-Group/calendar-glance",
+          "license": "GPL-3.0-or-later",
+          "licenseUrl": "https://github.com/Midtown-Technology-Group/calendar-glance/blob/main/LICENSE",
+          "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+          "shortDescription": "Read-only Microsoft 365 agenda snapshots for short-range planning and meeting context",
+          "description": "Calendar Glance provides read-only Microsoft 365 agenda snapshots for short-range planning and meeting context.",
+          "moniker": "calendar-glance",
+          "tags": [
+            "calendar",
+            "microsoft-graph",
+            "microsoft-365",
+            "planning",
+            "midtown"
+          ],
+          "releaseNotes": "Initial MSI release for Calendar Glance.",
+          "releaseNotesUrl": "https://github.com/Midtown-Technology-Group/calendar-glance/releases/tag/v0.1.0"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "msi",
+            "scope": "machine",
+            "installerUrl": "https://github.com/Midtown-Technology-Group/calendar-glance/releases/download/v0.1.0/calendar-glance.msi",
+            "installerSha256": "d9a65768aaf299f2145b6646ebbb32340701dbfba9cb259147901abab3cfcf1f",
+            "productCode": "{8420AC56-8F09-421D-92ED-C782D032572E}",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

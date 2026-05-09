@@ -1,0 +1,50 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.MailTriage",
+    "versions": [
+      {
+        "packageVersion": "0.1.0",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/mail-triage/issues",
+          "author": "Thomas Bray",
+          "packageName": "Mail Triage",
+          "packageUrl": "https://github.com/Midtown-Technology-Group/mail-triage",
+          "license": "GPL-3.0-or-later",
+          "licenseUrl": "https://github.com/Midtown-Technology-Group/mail-triage/blob/main/LICENSE",
+          "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+          "shortDescription": "Inbox triage with compact JSON output for notification and follow-up workflows",
+          "description": "Mail Triage provides Microsoft 365 inbox triage and delegated mail actions for Midtown operator workflows.",
+          "moniker": "mail-triage",
+          "tags": [
+            "mail",
+            "microsoft-graph",
+            "microsoft-365",
+            "productivity",
+            "midtown"
+          ],
+          "releaseNotes": "Initial MSI release for Mail Triage.",
+          "releaseNotesUrl": "https://github.com/Midtown-Technology-Group/mail-triage/releases/tag/v0.1.0"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "msi",
+            "scope": "machine",
+            "installerUrl": "https://github.com/Midtown-Technology-Group/mail-triage/releases/download/v0.1.0/mail-triage.msi",
+            "installerSha256": "3ed5aa3353b481da28069202c4a9bf5fd2cf115155680d7a0f49d025a4889bf0",
+            "productCode": "{9145C120-2C27-467C-8CB8-0902A0911DC9}",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
