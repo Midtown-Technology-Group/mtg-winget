@@ -1,0 +1,29 @@
+{
+  "packageIdentifier": "MidtownTechnologyGroup.Detour",
+  "packageName": "Detour",
+  "publisher": "Midtown Technology Group LLC",
+  "publisherUrl": "https://midtowntg.com",
+  "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/detour/issues",
+  "author": "Thomas Bray",
+  "packageUrl": "https://github.com/Midtown-Technology-Group/detour",
+  "license": "AGPL-3.0-only",
+  "licenseUrl": "https://github.com/Midtown-Technology-Group/detour/blob/main/LICENSE",
+  "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+  "shortDescription": "Track the work you did to get back to the work you meant to do.",
+  "description": "Track the work you did to get back to the work you meant to do.",
+  "moniker": "detour",
+  "tags": [
+    "cli",
+    "productivity",
+    "midtown"
+  ],
+  "releaseNotes": "Initial MSI release for Detour.",
+  "repo": "Midtown-Technology-Group/detour",
+  "assetName": "detour.msi",
+  "architecture": "x64",
+  "installerType": "msi",
+  "scope": "machine",
+  "upgradeBehavior": "install",
+  "silent": "/qn",
+  "silentWithProgress": "/qb"
+}

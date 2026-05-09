@@ -1,0 +1,31 @@
+{
+  "packageIdentifier": "MidtownTechnologyGroup.WeeklyReview",
+  "packageName": "Weekly Review",
+  "publisher": "Midtown Technology Group LLC",
+  "publisherUrl": "https://midtowntg.com",
+  "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/weekly-review/issues",
+  "author": "Thomas Bray",
+  "packageUrl": "https://github.com/Midtown-Technology-Group/weekly-review",
+  "license": "AGPL-3.0",
+  "licenseUrl": "https://github.com/Midtown-Technology-Group/weekly-review/blob/master/LICENSE",
+  "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+  "shortDescription": "Automated GTD weekly review generator for Logseq knowledge graphs",
+  "description": "Automated GTD weekly review generator for Logseq knowledge graphs",
+  "moniker": "weekly-review",
+  "tags": [
+    "gtd",
+    "logseq",
+    "cli",
+    "productivity",
+    "midtown"
+  ],
+  "releaseNotes": "Initial MSI release for Weekly Review.",
+  "repo": "Midtown-Technology-Group/weekly-review",
+  "assetName": "weekly-review.msi",
+  "architecture": "x64",
+  "installerType": "msi",
+  "scope": "machine",
+  "upgradeBehavior": "install",
+  "silent": "/qn",
+  "silentWithProgress": "/qb"
+}

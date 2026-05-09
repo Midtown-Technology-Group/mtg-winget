@@ -1,0 +1,31 @@
+{
+  "packageIdentifier": "MidtownTechnologyGroup.MeetingCostTracker",
+  "packageName": "Meeting Cost Tracker",
+  "publisher": "Midtown Technology Group LLC",
+  "publisherUrl": "https://midtowntg.com",
+  "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/meeting-cost-tracker/issues",
+  "author": "Thomas Bray",
+  "packageUrl": "https://github.com/Midtown-Technology-Group/meeting-cost-tracker",
+  "license": "AGPL-3.0",
+  "licenseUrl": "https://github.com/Midtown-Technology-Group/meeting-cost-tracker/blob/master/LICENSE",
+  "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+  "shortDescription": "Track the real cost of Microsoft Teams meetings by participant time",
+  "description": "Track the real cost of Microsoft Teams meetings by participant time",
+  "moniker": "mct",
+  "tags": [
+    "teams",
+    "time",
+    "cli",
+    "productivity",
+    "midtown"
+  ],
+  "releaseNotes": "Initial MSI release for Meeting Cost Tracker.",
+  "repo": "Midtown-Technology-Group/meeting-cost-tracker",
+  "assetName": "mct.msi",
+  "architecture": "x64",
+  "installerType": "msi",
+  "scope": "machine",
+  "upgradeBehavior": "install",
+  "silent": "/qn",
+  "silentWithProgress": "/qb"
+}
