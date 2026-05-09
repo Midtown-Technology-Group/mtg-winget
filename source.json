@@ -3,7 +3,7 @@
   "data": {
     "sourceIdentifier": "mtg-tools",
     "sourceName": "Midtown Technology Group Tools",
-    "sourceType": "Microsoft.PreIndexed.Package",
+    "sourceType": "Microsoft.Rest",
     "sourceUrl": "https://winget.midtowntg.com",
     "sourceAgreements": {
       "agreementUrl": "https://midtowntg.com/terms",

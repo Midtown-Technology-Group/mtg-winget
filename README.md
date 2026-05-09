@@ -9,15 +9,19 @@ Private Winget REST source for Midtown Technology Group internal tools.
 - `manifests/`: YAML manifests
 - `packageManifests/`: pre-indexed JSON package manifests
 - `staticwebapp.config.json`: Azure Static Web Apps routing and auth
+- `api/`: minimal WinGet REST source endpoints for clients
 - `packages/`: package metadata used to generate manifests
 
 ## Client usage
 
 ```powershell
-winget source add -n mtg-tools -a https://winget.midtowntg.com
+winget source add -n mtg-tools -a https://winget.midtowntg.com/api -t Microsoft.Rest
 winget source update
 winget search --source mtg-tools
 ```
+
+WinGet defaults to the pre-indexed MSIX source type when `-t Microsoft.Rest`
+is omitted, which makes it look for `source2.msix` or `source.msix`.
 
 ## Operations
 

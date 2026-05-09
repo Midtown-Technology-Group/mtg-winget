@@ -17,7 +17,14 @@
     },
     {
       "route": "/information",
-      "rewrite": "/source.json",
+      "rewrite": "/api/information",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    {
+      "route": "/manifestSearch",
+      "rewrite": "/api/manifestSearch",
       "headers": {
         "Content-Type": "application/json"
       }
