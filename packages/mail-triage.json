@@ -1,0 +1,31 @@
+{
+  "packageIdentifier": "MidtownTechnologyGroup.MailTriage",
+  "packageName": "Mail Triage",
+  "publisher": "Midtown Technology Group LLC",
+  "publisherUrl": "https://midtowntg.com",
+  "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/mail-triage/issues",
+  "author": "Thomas Bray",
+  "packageUrl": "https://github.com/Midtown-Technology-Group/mail-triage",
+  "license": "GPL-3.0-or-later",
+  "licenseUrl": "https://github.com/Midtown-Technology-Group/mail-triage/blob/main/LICENSE",
+  "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+  "shortDescription": "Inbox triage with compact JSON output for notification and follow-up workflows",
+  "description": "Mail Triage provides Microsoft 365 inbox triage and delegated mail actions for Midtown operator workflows.",
+  "moniker": "mail-triage",
+  "tags": [
+    "mail",
+    "microsoft-graph",
+    "microsoft-365",
+    "productivity",
+    "midtown"
+  ],
+  "releaseNotes": "Initial MSI release for Mail Triage.",
+  "repo": "Midtown-Technology-Group/mail-triage",
+  "assetName": "mail-triage.msi",
+  "architecture": "x64",
+  "installerType": "msi",
+  "scope": "machine",
+  "upgradeBehavior": "install",
+  "silent": "/qn",
+  "silentWithProgress": "/qb"
+}

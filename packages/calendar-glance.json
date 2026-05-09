@@ -1,0 +1,31 @@
+{
+  "packageIdentifier": "MidtownTechnologyGroup.CalendarGlance",
+  "packageName": "Calendar Glance",
+  "publisher": "Midtown Technology Group LLC",
+  "publisherUrl": "https://midtowntg.com",
+  "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/calendar-glance/issues",
+  "author": "Thomas Bray",
+  "packageUrl": "https://github.com/Midtown-Technology-Group/calendar-glance",
+  "license": "GPL-3.0-or-later",
+  "licenseUrl": "https://github.com/Midtown-Technology-Group/calendar-glance/blob/main/LICENSE",
+  "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+  "shortDescription": "Read-only Microsoft 365 agenda snapshots for short-range planning and meeting context",
+  "description": "Calendar Glance provides read-only Microsoft 365 agenda snapshots for short-range planning and meeting context.",
+  "moniker": "calendar-glance",
+  "tags": [
+    "calendar",
+    "microsoft-graph",
+    "microsoft-365",
+    "planning",
+    "midtown"
+  ],
+  "releaseNotes": "Initial MSI release for Calendar Glance.",
+  "repo": "Midtown-Technology-Group/calendar-glance",
+  "assetName": "calendar-glance.msi",
+  "architecture": "x64",
+  "installerType": "msi",
+  "scope": "machine",
+  "upgradeBehavior": "install",
+  "silent": "/qn",
+  "silentWithProgress": "/qb"
+}
