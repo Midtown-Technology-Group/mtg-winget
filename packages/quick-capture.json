@@ -1,0 +1,31 @@
+{
+  "packageIdentifier": "MidtownTechnologyGroup.QuickCapture",
+  "packageName": "Quick Capture",
+  "publisher": "Midtown Technology Group LLC",
+  "publisherUrl": "https://midtowntg.com",
+  "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/quick-capture/issues",
+  "author": "Thomas Bray",
+  "packageUrl": "https://github.com/Midtown-Technology-Group/quick-capture",
+  "license": "AGPL-3.0-or-later",
+  "licenseUrl": "https://github.com/Midtown-Technology-Group/quick-capture/blob/main/LICENSE",
+  "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+  "shortDescription": "Fast, frictionless capture for Logseq daily notes",
+  "description": "Fast, frictionless capture for Logseq daily notes",
+  "moniker": "quick-capture",
+  "tags": [
+    "logseq",
+    "notes",
+    "cli",
+    "productivity",
+    "midtown"
+  ],
+  "releaseNotes": "Initial MSI release for Quick Capture.",
+  "repo": "Midtown-Technology-Group/quick-capture",
+  "assetName": "quick-capture.msi",
+  "architecture": "x64",
+  "installerType": "msi",
+  "scope": "machine",
+  "upgradeBehavior": "install",
+  "silent": "/qn",
+  "silentWithProgress": "/qb"
+}

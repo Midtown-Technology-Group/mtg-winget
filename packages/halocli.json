@@ -1,0 +1,30 @@
+{
+  "packageIdentifier": "MidtownTechnologyGroup.Halocli",
+  "packageName": "Halocli",
+  "publisher": "Midtown Technology Group LLC",
+  "publisherUrl": "https://midtowntg.com",
+  "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/halocli/issues",
+  "author": "Thomas Bray",
+  "packageUrl": "https://github.com/Midtown-Technology-Group/halocli",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/Midtown-Technology-Group/halocli/blob/main/LICENSE",
+  "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+  "shortDescription": "Standalone HaloPSA CLI for safe operator and automation workflows",
+  "description": "Standalone HaloPSA CLI for safe operator and automation workflows",
+  "moniker": "halocli",
+  "tags": [
+    "halo",
+    "cli",
+    "productivity",
+    "midtown"
+  ],
+  "releaseNotes": "Initial MSI release for Halocli.",
+  "repo": "Midtown-Technology-Group/halocli",
+  "assetName": "halocli.msi",
+  "architecture": "x64",
+  "installerType": "msi",
+  "scope": "machine",
+  "upgradeBehavior": "install",
+  "silent": "/qn",
+  "silentWithProgress": "/qb"
+}

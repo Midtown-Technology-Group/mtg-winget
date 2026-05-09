@@ -1,0 +1,31 @@
+{
+  "packageIdentifier": "MidtownTechnologyGroup.ContextSync",
+  "packageName": "Context Sync",
+  "publisher": "Midtown Technology Group LLC",
+  "publisherUrl": "https://midtowntg.com",
+  "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/context-sync/issues",
+  "author": "Thomas Bray",
+  "packageUrl": "https://github.com/Midtown-Technology-Group/context-sync",
+  "license": "MIT",
+  "licenseUrl": "https://github.com/Midtown-Technology-Group/context-sync/blob/main/LICENSE",
+  "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+  "shortDescription": "Sync Microsoft 365 work context to LogSeq knowledge graph",
+  "description": "Sync Microsoft 365 work context to LogSeq knowledge graph",
+  "moniker": "work-context-sync",
+  "tags": [
+    "logseq",
+    "microsoft-365",
+    "cli",
+    "productivity",
+    "midtown"
+  ],
+  "releaseNotes": "Initial MSI release for Context Sync.",
+  "repo": "Midtown-Technology-Group/context-sync",
+  "assetName": "work-context-sync.msi",
+  "architecture": "x64",
+  "installerType": "msi",
+  "scope": "machine",
+  "upgradeBehavior": "install",
+  "silent": "/qn",
+  "silentWithProgress": "/qb"
+}

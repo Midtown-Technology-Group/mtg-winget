@@ -1,0 +1,31 @@
+{
+  "packageIdentifier": "MidtownTechnologyGroup.TimeTracker",
+  "packageName": "Time Tracker",
+  "publisher": "Midtown Technology Group LLC",
+  "publisherUrl": "https://midtowntg.com",
+  "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/time-tracker/issues",
+  "author": "Thomas Bray",
+  "packageUrl": "https://github.com/Midtown-Technology-Group/time-tracker",
+  "license": "AGPL-3.0",
+  "licenseUrl": "https://github.com/Midtown-Technology-Group/time-tracker/blob/master/LICENSE",
+  "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+  "shortDescription": "Track time on tasks with zero friction. Integrates with GTD workflows.",
+  "description": "Track time on tasks with zero friction. Integrates with GTD workflows.",
+  "moniker": "time-tracker",
+  "tags": [
+    "gtd",
+    "time",
+    "cli",
+    "productivity",
+    "midtown"
+  ],
+  "releaseNotes": "Initial MSI release for Time Tracker.",
+  "repo": "Midtown-Technology-Group/time-tracker",
+  "assetName": "time-tracker.msi",
+  "architecture": "x64",
+  "installerType": "msi",
+  "scope": "machine",
+  "upgradeBehavior": "install",
+  "silent": "/qn",
+  "silentWithProgress": "/qb"
+}
