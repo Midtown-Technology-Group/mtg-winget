@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.WeeklyReview
+PackageVersion: 0.1.0
+MinimumOSVersion: 10.0.0.0
+InstallerType: msi
+Scope: machine
+UpgradeBehavior: install
+ProductCode: '{9915178F-F778-4473-A439-E953C315E1C4}'
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/Midtown-Technology-Group/weekly-review/releases/download/v0.1.0/weekly-review.msi
+    InstallerSha256: 9868323ff3f489158a70a63207992654211a1500f36e805ed8653375ee2e3b1b
+    InstallerSwitches:
+      Silent: /qn
+      SilentWithProgress: /qb
+ManifestType: installer
+ManifestVersion: 1.5.0

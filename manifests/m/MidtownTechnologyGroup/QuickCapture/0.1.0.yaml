@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.QuickCapture
+PackageVersion: 0.1.0
+MinimumOSVersion: 10.0.0.0
+InstallerType: msi
+Scope: machine
+UpgradeBehavior: install
+ProductCode: '{9BBD194F-013E-4A26-81BD-B4ED836F5937}'
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/Midtown-Technology-Group/quick-capture/releases/download/v0.1.0/quick-capture.msi
+    InstallerSha256: 4bba4f8ac12e55a5dd1813adb5df1c575bfb515ced1716a4aed44a71e4d6f483
+    InstallerSwitches:
+      Silent: /qn
+      SilentWithProgress: /qb
+ManifestType: installer
+ManifestVersion: 1.5.0

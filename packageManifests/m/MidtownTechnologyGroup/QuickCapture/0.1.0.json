@@ -1,0 +1,50 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.QuickCapture",
+    "versions": [
+      {
+        "packageVersion": "0.1.0",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/quick-capture/issues",
+          "author": "Thomas Bray",
+          "packageName": "Quick Capture",
+          "packageUrl": "https://github.com/Midtown-Technology-Group/quick-capture",
+          "license": "AGPL-3.0-or-later",
+          "licenseUrl": "https://github.com/Midtown-Technology-Group/quick-capture/blob/main/LICENSE",
+          "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+          "shortDescription": "Fast, frictionless capture for Logseq daily notes",
+          "description": "Fast, frictionless capture for Logseq daily notes",
+          "moniker": "quick-capture",
+          "tags": [
+            "logseq",
+            "notes",
+            "cli",
+            "productivity",
+            "midtown"
+          ],
+          "releaseNotes": "Initial MSI release for Quick Capture.",
+          "releaseNotesUrl": "https://github.com/Midtown-Technology-Group/quick-capture/releases/tag/v0.1.0"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "msi",
+            "scope": "machine",
+            "installerUrl": "https://github.com/Midtown-Technology-Group/quick-capture/releases/download/v0.1.0/quick-capture.msi",
+            "installerSha256": "4bba4f8ac12e55a5dd1813adb5df1c575bfb515ced1716a4aed44a71e4d6f483",
+            "productCode": "{9BBD194F-013E-4A26-81BD-B4ED836F5937}",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

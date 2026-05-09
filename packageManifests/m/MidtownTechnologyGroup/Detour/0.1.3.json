@@ -1,0 +1,48 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.Detour",
+    "versions": [
+      {
+        "packageVersion": "0.1.3",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/detour/issues",
+          "author": "Thomas Bray",
+          "packageName": "Detour",
+          "packageUrl": "https://github.com/Midtown-Technology-Group/detour",
+          "license": "AGPL-3.0-only",
+          "licenseUrl": "https://github.com/Midtown-Technology-Group/detour/blob/main/LICENSE",
+          "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+          "shortDescription": "Track the work you did to get back to the work you meant to do.",
+          "description": "Track the work you did to get back to the work you meant to do.",
+          "moniker": "detour",
+          "tags": [
+            "cli",
+            "productivity",
+            "midtown"
+          ],
+          "releaseNotes": "Initial MSI release for Detour.",
+          "releaseNotesUrl": "https://github.com/Midtown-Technology-Group/detour/releases/tag/v0.1.3"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "msi",
+            "scope": "machine",
+            "installerUrl": "https://github.com/Midtown-Technology-Group/detour/releases/download/v0.1.3/detour.msi",
+            "installerSha256": "8f676d4547a1d541fedf1be00f66654c4333f3dd6d8f4b2edc15c7aad49d8763",
+            "productCode": "{303221BB-88BF-423D-96B4-2BA65C8F7BAC}",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

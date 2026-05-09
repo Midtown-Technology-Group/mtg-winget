@@ -1,0 +1,50 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.WeeklyReview",
+    "versions": [
+      {
+        "packageVersion": "0.1.0",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/weekly-review/issues",
+          "author": "Thomas Bray",
+          "packageName": "Weekly Review",
+          "packageUrl": "https://github.com/Midtown-Technology-Group/weekly-review",
+          "license": "AGPL-3.0",
+          "licenseUrl": "https://github.com/Midtown-Technology-Group/weekly-review/blob/master/LICENSE",
+          "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+          "shortDescription": "Automated GTD weekly review generator for Logseq knowledge graphs",
+          "description": "Automated GTD weekly review generator for Logseq knowledge graphs",
+          "moniker": "weekly-review",
+          "tags": [
+            "gtd",
+            "logseq",
+            "cli",
+            "productivity",
+            "midtown"
+          ],
+          "releaseNotes": "Initial MSI release for Weekly Review.",
+          "releaseNotesUrl": "https://github.com/Midtown-Technology-Group/weekly-review/releases/tag/v0.1.0"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "msi",
+            "scope": "machine",
+            "installerUrl": "https://github.com/Midtown-Technology-Group/weekly-review/releases/download/v0.1.0/weekly-review.msi",
+            "installerSha256": "9868323ff3f489158a70a63207992654211a1500f36e805ed8653375ee2e3b1b",
+            "productCode": "{9915178F-F778-4473-A439-E953C315E1C4}",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

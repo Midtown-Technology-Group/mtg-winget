@@ -1,0 +1,50 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.GtdDashboard",
+    "versions": [
+      {
+        "packageVersion": "0.1.0",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/gtd-dashboard/issues",
+          "author": "Thomas Bray",
+          "packageName": "GTD Dashboard",
+          "packageUrl": "https://github.com/Midtown-Technology-Group/gtd-dashboard",
+          "license": "AGPL-3.0",
+          "licenseUrl": "https://github.com/Midtown-Technology-Group/gtd-dashboard/blob/master/LICENSE",
+          "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+          "shortDescription": "GTD Dashboard CLI for Logseq knowledge graphs",
+          "description": "GTD Dashboard CLI for Logseq knowledge graphs",
+          "moniker": "gtd-dashboard",
+          "tags": [
+            "gtd",
+            "logseq",
+            "cli",
+            "productivity",
+            "midtown"
+          ],
+          "releaseNotes": "Initial MSI release for GTD Dashboard.",
+          "releaseNotesUrl": "https://github.com/Midtown-Technology-Group/gtd-dashboard/releases/tag/v0.1.0"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "msi",
+            "scope": "machine",
+            "installerUrl": "https://github.com/Midtown-Technology-Group/gtd-dashboard/releases/download/v0.1.0/gtd-dashboard.msi",
+            "installerSha256": "495a6c6440e2920763642593c32742c463216a042886bdabb009611b2c7924a2",
+            "productCode": "{B3D2F6FB-50FC-41BD-B0BB-F7AA0582F7F3}",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

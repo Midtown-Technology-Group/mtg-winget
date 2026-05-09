@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.QuickCapture
+PackageVersion: 0.1.0
+PackageLocale: en-US
+Publisher: Midtown Technology Group LLC
+PublisherUrl: https://midtowntg.com
+PublisherSupportUrl: https://github.com/Midtown-Technology-Group/quick-capture/issues
+Author: Thomas Bray
+PackageName: Quick Capture
+PackageUrl: https://github.com/Midtown-Technology-Group/quick-capture
+License: AGPL-3.0-or-later
+LicenseUrl: https://github.com/Midtown-Technology-Group/quick-capture/blob/main/LICENSE
+Copyright: Copyright (c) 2026 Midtown Technology Group LLC
+ShortDescription: Fast, frictionless capture for Logseq daily notes
+Description: |
+  Fast, frictionless capture for Logseq daily notes
+Moniker: quick-capture
+Tags:
+  - logseq
+  - notes
+  - cli
+  - productivity
+  - midtown
+ReleaseNotes: |
+  Initial MSI release for Quick Capture.
+ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/quick-capture/releases/tag/v0.1.0
+ManifestType: defaultLocale
+ManifestVersion: 1.5.0

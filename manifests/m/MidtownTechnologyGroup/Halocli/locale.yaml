@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.Halocli
+PackageVersion: 0.5.0
+PackageLocale: en-US
+Publisher: Midtown Technology Group LLC
+PublisherUrl: https://midtowntg.com
+PublisherSupportUrl: https://github.com/Midtown-Technology-Group/halocli/issues
+Author: Thomas Bray
+PackageName: Halocli
+PackageUrl: https://github.com/Midtown-Technology-Group/halocli
+License: GPL-3.0-only
+LicenseUrl: https://github.com/Midtown-Technology-Group/halocli/blob/main/LICENSE
+Copyright: Copyright (c) 2026 Midtown Technology Group LLC
+ShortDescription: Standalone HaloPSA CLI for safe operator and automation workflows
+Description: |
+  Standalone HaloPSA CLI for safe operator and automation workflows
+Moniker: halocli
+Tags:
+  - halo
+  - cli
+  - productivity
+  - midtown
+ReleaseNotes: |
+  Initial MSI release for Halocli.
+ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/halocli/releases/tag/v0.5.0
+ManifestType: defaultLocale
+ManifestVersion: 1.5.0

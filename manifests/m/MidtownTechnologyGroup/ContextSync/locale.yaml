@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.ContextSync
+PackageVersion: 1.0.0
+PackageLocale: en-US
+Publisher: Midtown Technology Group LLC
+PublisherUrl: https://midtowntg.com
+PublisherSupportUrl: https://github.com/Midtown-Technology-Group/context-sync/issues
+Author: Thomas Bray
+PackageName: Context Sync
+PackageUrl: https://github.com/Midtown-Technology-Group/context-sync
+License: MIT
+LicenseUrl: https://github.com/Midtown-Technology-Group/context-sync/blob/main/LICENSE
+Copyright: Copyright (c) 2026 Midtown Technology Group LLC
+ShortDescription: Sync Microsoft 365 work context to LogSeq knowledge graph
+Description: |
+  Sync Microsoft 365 work context to LogSeq knowledge graph
+Moniker: work-context-sync
+Tags:
+  - logseq
+  - microsoft-365
+  - cli
+  - productivity
+  - midtown
+ReleaseNotes: |
+  Initial MSI release for Context Sync.
+ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/context-sync/releases/tag/v1.0.0
+ManifestType: defaultLocale
+ManifestVersion: 1.5.0

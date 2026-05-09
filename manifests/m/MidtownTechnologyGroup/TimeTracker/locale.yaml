@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.TimeTracker
+PackageVersion: 0.1.0
+PackageLocale: en-US
+Publisher: Midtown Technology Group LLC
+PublisherUrl: https://midtowntg.com
+PublisherSupportUrl: https://github.com/Midtown-Technology-Group/time-tracker/issues
+Author: Thomas Bray
+PackageName: Time Tracker
+PackageUrl: https://github.com/Midtown-Technology-Group/time-tracker
+License: AGPL-3.0
+LicenseUrl: https://github.com/Midtown-Technology-Group/time-tracker/blob/master/LICENSE
+Copyright: Copyright (c) 2026 Midtown Technology Group LLC
+ShortDescription: Track time on tasks with zero friction. Integrates with GTD workflows.
+Description: |
+  Track time on tasks with zero friction. Integrates with GTD workflows.
+Moniker: time-tracker
+Tags:
+  - gtd
+  - time
+  - cli
+  - productivity
+  - midtown
+ReleaseNotes: |
+  Initial MSI release for Time Tracker.
+ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/time-tracker/releases/tag/v0.1.0
+ManifestType: defaultLocale
+ManifestVersion: 1.5.0
