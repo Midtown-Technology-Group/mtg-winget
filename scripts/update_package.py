@@ -39,7 +39,8 @@ def main() -> int:
     manifest_dir.mkdir(parents=True, exist_ok=True)
     package_manifest_dir.mkdir(parents=True, exist_ok=True)
 
-    tag = f"v{version}"
+    release_tag_template = package_meta.get("releaseTagTemplate", "v{version}")
+    tag = release_tag_template.format(version=version)
     version_yaml = f"""# yaml-language-server: $schema=https://aka.ms/winget-manifest.version.1.5.0.schema.json
 
 PackageIdentifier: {package_id}
