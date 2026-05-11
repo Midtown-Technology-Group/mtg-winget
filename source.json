@@ -4,7 +4,7 @@
     "sourceIdentifier": "mtg-tools",
     "sourceName": "Midtown Technology Group Tools",
     "sourceType": "Microsoft.Rest",
-    "sourceUrl": "https://winget.midtowntg.com",
+    "sourceUrl": "https://winget.midtowntg.com/api",
     "sourceAgreements": {
       "agreementUrl": "https://midtowntg.com/terms",
       "agreement": [

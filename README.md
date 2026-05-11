@@ -15,7 +15,7 @@ Private Winget REST source for Midtown Technology Group internal tools.
 ## Client usage
 
 ```powershell
-winget source add -n mtg-tools -a https://winget.midtowntg.com -t Microsoft.Rest
+winget source add -n mtg-tools -a https://winget.midtowntg.com/api -t Microsoft.Rest
 winget source update
 winget search --source mtg-tools
 ```
