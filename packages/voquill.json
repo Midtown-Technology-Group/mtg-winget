@@ -21,10 +21,10 @@
     "productivity",
     "midtown"
   ],
-  "releaseNotes": "Fork-local MTG release for team testing.",
+  "releaseNotes": "Fixes packaged-app permissions for OpenVINO model warmup and overlay positioning, with CI coverage for missing Tauri command ACL entries.",
   "repo": "MTG-Thomas/voquill",
   "releaseTagTemplate": "mtg-v{version}",
-  "assetName": "Voquill_1.3.13_x64_en-US.msi",
+  "assetName": "Voquill_1.3.14_x64_en-US.msi",
   "architecture": "x64",
   "installerType": "msi",
   "scope": "machine",

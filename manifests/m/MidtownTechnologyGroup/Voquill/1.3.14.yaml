@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.Voquill
+PackageVersion: 1.3.14
+MinimumOSVersion: 10.0.0.0
+InstallerType: msi
+Scope: machine
+UpgradeBehavior: install
+ProductCode: '{C65AD20B-AE2D-4F05-ADA7-46D5593F4072}'
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/MTG-Thomas/voquill/releases/download/mtg-v1.3.14/Voquill_1.3.14_x64_en-US.msi
+    InstallerSha256: c0a72ee83d9269d1b26c93eb11cf9b883f701b8384d84d5a613dcc3963a94e51
+    InstallerSwitches:
+      Silent: /qn
+      SilentWithProgress: /qb
+ManifestType: installer
+ManifestVersion: 1.5.0

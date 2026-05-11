@@ -1,0 +1,52 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.Voquill",
+    "versions": [
+      {
+        "packageVersion": "1.3.14",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/MTG-Thomas/voquill/issues",
+          "author": "Jack Brumley, MTG-Thomas fork maintainers",
+          "packageName": "Voquill",
+          "packageUrl": "https://github.com/MTG-Thomas/voquill",
+          "license": "AGPL-3.0-only",
+          "licenseUrl": "https://github.com/MTG-Thomas/voquill/blob/main/LICENSE",
+          "copyright": "Copyright (c) Voquill contributors",
+          "shortDescription": "Push-to-talk dictation app with local transcription support",
+          "description": "Cross-platform push-to-talk dictation app with Whisper-powered speech recognition and MTG fork enhancements for local Windows dictation workflows.",
+          "moniker": "voquill",
+          "tags": [
+            "dictation",
+            "speech-to-text",
+            "whisper",
+            "openvino",
+            "npu",
+            "productivity",
+            "midtown"
+          ],
+          "releaseNotes": "Fixes packaged-app permissions for OpenVINO model warmup and overlay positioning, with CI coverage for missing Tauri command ACL entries.",
+          "releaseNotesUrl": "https://github.com/MTG-Thomas/voquill/releases/tag/mtg-v1.3.14"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "msi",
+            "scope": "machine",
+            "installerUrl": "https://github.com/MTG-Thomas/voquill/releases/download/mtg-v1.3.14/Voquill_1.3.14_x64_en-US.msi",
+            "installerSha256": "c0a72ee83d9269d1b26c93eb11cf9b883f701b8384d84d5a613dcc3963a94e51",
+            "productCode": "{C65AD20B-AE2D-4F05-ADA7-46D5593F4072}",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
