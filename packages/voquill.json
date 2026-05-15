@@ -21,10 +21,10 @@
     "productivity",
     "midtown"
   ],
-  "releaseNotes": "Fixes packaged-app permissions for OpenVINO model warmup and overlay positioning, with CI coverage for missing Tauri command ACL entries.",
+  "releaseNotes": "Adds Windows 11 native styling defaults, CI release fixes, sccache build acceleration, and macOS release artifacts.",
   "repo": "MTG-Thomas/voquill",
   "releaseTagTemplate": "mtg-v{version}",
-  "assetName": "Voquill_1.3.14_x64_en-US.msi",
+  "assetName": "Voquill_1.3.21_x64_en-US.msi",
   "architecture": "x64",
   "installerType": "msi",
   "scope": "machine",
