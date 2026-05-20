@@ -55,6 +55,15 @@ function response(data) {
   return { Data: data };
 }
 
+function searchResponse(data, extra = {}) {
+  return {
+    Data: data,
+    ContinuationToken: null,
+    UnsupportedPackageMatchFields: extra.UnsupportedPackageMatchFields || [],
+    RequiredPackageMatchFields: extra.RequiredPackageMatchFields || []
+  };
+}
+
 function information() {
   return response({
     SourceIdentifier: "mtg-tools",
@@ -94,33 +103,153 @@ function pickSearchText(body) {
   return [
     body?.Query?.KeyWord,
     body?.Query?.Keyword,
+    body?.Query?.RequestMatch?.KeyWord,
+    body?.Query?.RequestMatch?.Keyword,
     body?.Query?.Value,
     body?.Query?.SearchTerm,
     body?.SearchTerm
   ]
     .filter(Boolean)
     .join(" ")
-    .toLowerCase();
+    .trim();
+}
+
+function normalizeMatchType(value) {
+  return String(value || "Substring").trim().toLowerCase();
+}
+
+function queryMatchType(body) {
+  return body?.Query?.MatchType || body?.Query?.RequestMatch?.MatchType || "Substring";
+}
+
+function pickRequestMatchText(filter) {
+  return [
+    filter?.RequestMatch?.KeyWord,
+    filter?.RequestMatch?.Keyword,
+    filter?.RequestMatch?.Value,
+    filter?.RequestMatch?.SearchTerm,
+    filter?.KeyWord,
+    filter?.Keyword,
+    filter?.Value,
+    filter?.SearchTerm
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function packageFieldValues(pkg, packageMatchField) {
+  const field = String(packageMatchField || "").trim().toLowerCase();
+  const locales = (pkg.Versions || []).map((version) => version.DefaultLocale || {});
+
+  switch (field) {
+    case "packageidentifier":
+    case "id":
+      return [pkg.PackageIdentifier];
+    case "packagename":
+    case "name":
+      return [pkg.PackageName, ...locales.map((locale) => locale.PackageName)];
+    case "publisher":
+      return [pkg.Publisher, ...locales.map((locale) => locale.Publisher)];
+    case "moniker":
+      return locales.map((locale) => locale.Moniker);
+    case "tag":
+    case "tags":
+      return locales.flatMap((locale) => locale.Tags || []);
+    case "description":
+      return locales.map((locale) => locale.Description);
+    case "shortdescription":
+      return locales.map((locale) => locale.ShortDescription);
+    default:
+      return [];
+  }
+}
+
+function isSupportedPackageMatchField(packageMatchField) {
+  return packageFieldValues({ Versions: [] }, packageMatchField).length > 0;
+}
+
+function valueMatches(candidate, searchText, matchType) {
+  if (!candidate || !searchText) {
+    return false;
+  }
+
+  const rawCandidate = String(candidate);
+  const rawSearchText = String(searchText);
+  const normalizedCandidate = rawCandidate.toLowerCase();
+  const normalizedSearchText = rawSearchText.toLowerCase();
+
+  switch (normalizeMatchType(matchType)) {
+    case "exact":
+      return rawCandidate === rawSearchText;
+    case "caseinsensitive":
+      return normalizedCandidate === normalizedSearchText;
+    case "startswith":
+      return normalizedCandidate.startsWith(normalizedSearchText);
+    case "substring":
+    default:
+      return normalizedCandidate.includes(normalizedSearchText);
+  }
+}
+
+function packageMatchesFilter(pkg, filter) {
+  const searchText = pickRequestMatchText(filter);
+  if (!searchText) {
+    return true;
+  }
+
+  const values = packageFieldValues(pkg, filter?.PackageMatchField);
+  if (values.length === 0) {
+    return false;
+  }
+
+  return values.some((value) => valueMatches(value, searchText, filter?.RequestMatch?.MatchType));
+}
+
+function packageMatchesSearch(pkg, searchText, matchType) {
+  if (!searchText) {
+    return true;
+  }
+
+  return [
+    pkg.PackageIdentifier,
+    pkg.PackageName,
+    pkg.Publisher,
+    ...(pkg.Versions || []).flatMap((version) => [
+      version.DefaultLocale?.PackageName,
+      version.DefaultLocale?.ShortDescription,
+      version.DefaultLocale?.Description,
+      version.DefaultLocale?.Moniker,
+      ...(version.DefaultLocale?.Tags || [])
+    ])
+  ].some((value) => valueMatches(value, searchText, matchType));
+}
+
+function collectUnsupportedPackageMatchFields(filters) {
+  return [
+    ...new Set(
+      filters
+        .map((filter) => filter?.PackageMatchField)
+        .filter((field) => field && !isSupportedPackageMatchField(field))
+    )
+  ];
 }
 
 function manifestSearch(body) {
   const searchText = pickSearchText(body || {});
+  const inclusions = Array.isArray(body?.Inclusions) ? body.Inclusions : [];
+  const filters = Array.isArray(body?.Filters) ? body.Filters : [];
+  const unsupportedFields = collectUnsupportedPackageMatchFields([...inclusions, ...filters]);
   const packages = packageIndex()
     .filter((pkg) => {
-      if (!searchText) {
-        return true;
+      if (!packageMatchesSearch(pkg, searchText, queryMatchType(body))) {
+        return false;
       }
 
-      return [
-        pkg.PackageIdentifier,
-        pkg.PackageName,
-        pkg.Publisher,
-        ...(pkg.Versions || []).map((version) => version.DefaultLocale?.ShortDescription)
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase()
-        .includes(searchText);
+      if (inclusions.length > 0 && !inclusions.some((filter) => packageMatchesFilter(pkg, filter))) {
+        return false;
+      }
+
+      return filters.every((filter) => packageMatchesFilter(pkg, filter));
     })
     .map((pkg) => ({
       PackageIdentifier: pkg.PackageIdentifier,
@@ -131,7 +260,9 @@ function manifestSearch(body) {
       }))
     }));
 
-  return response(packages);
+  return searchResponse(packages, {
+    UnsupportedPackageMatchFields: unsupportedFields
+  });
 }
 
 function mapKeys(source, keyMap) {

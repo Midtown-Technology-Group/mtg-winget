@@ -2,6 +2,9 @@
   "name": "mtg-winget-api",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "test": "node test/feed.test.js"
+  },
   "engines": {
     "node": ">=18"
   }

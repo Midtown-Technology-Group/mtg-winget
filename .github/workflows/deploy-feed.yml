@@ -20,6 +20,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Test REST source helper
+        run: npm --prefix api test
+
       - name: Prepare site payload
         shell: pwsh
         run: ./scripts/prepare_site.ps1
