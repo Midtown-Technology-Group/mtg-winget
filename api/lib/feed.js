@@ -99,6 +99,25 @@ function latestVersion(packageEntry) {
   return (packageEntry.Versions || [])[0]?.PackageVersion;
 }
 
+function packageManifestRaw(packageEntry) {
+  const manifestVersion = latestVersion(packageEntry);
+  const manifestPath = packageManifestPath(packageEntry.PackageIdentifier, manifestVersion);
+  if (!manifestPath || !fs.existsSync(manifestPath)) {
+    return null;
+  }
+
+  return readJson(manifestPath).data;
+}
+
+function normalizeSearchValue(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function pickSearchText(body) {
   return [
     body?.Query?.KeyWord,
@@ -140,6 +159,7 @@ function pickRequestMatchText(filter) {
 function packageFieldValues(pkg, packageMatchField) {
   const field = String(packageMatchField || "").trim().toLowerCase();
   const locales = (pkg.Versions || []).map((version) => version.DefaultLocale || {});
+  const manifest = packageManifestRaw(pkg);
 
   switch (field) {
     case "packageidentifier":
@@ -159,13 +179,47 @@ function packageFieldValues(pkg, packageMatchField) {
       return locales.map((locale) => locale.Description);
     case "shortdescription":
       return locales.map((locale) => locale.ShortDescription);
+    case "productcode":
+      return (manifest?.versions || []).flatMap((version) =>
+        (version.installers || []).map((installer) => installer.productCode)
+      );
+    case "normalizednameandpublisher":
+      return [
+        `${normalizeSearchValue(pkg.PackageName)} ${normalizeSearchValue(pkg.Publisher)}`,
+        ...locales.map(
+          (locale) =>
+            `${normalizeSearchValue(locale.PackageName || pkg.PackageName)} ${normalizeSearchValue(
+              locale.Publisher || pkg.Publisher
+            )}`
+        )
+      ];
+    case "command":
+    case "packagefamilyname":
+    case "market":
+      return [];
     default:
       return [];
   }
 }
 
 function isSupportedPackageMatchField(packageMatchField) {
-  return packageFieldValues({ Versions: [] }, packageMatchField).length > 0;
+  return [
+    "command",
+    "description",
+    "id",
+    "market",
+    "moniker",
+    "name",
+    "normalizednameandpublisher",
+    "packagefamilyname",
+    "packageidentifier",
+    "packagename",
+    "productcode",
+    "publisher",
+    "shortdescription",
+    "tag",
+    "tags"
+  ].includes(String(packageMatchField || "").trim().toLowerCase());
 }
 
 function valueMatches(candidate, searchText, matchType) {
@@ -177,12 +231,14 @@ function valueMatches(candidate, searchText, matchType) {
   const rawSearchText = String(searchText);
   const normalizedCandidate = rawCandidate.toLowerCase();
   const normalizedSearchText = rawSearchText.toLowerCase();
+  const searchNormalizedCandidate = normalizeSearchValue(candidate);
+  const searchNormalizedSearchText = normalizeSearchValue(searchText);
 
   switch (normalizeMatchType(matchType)) {
     case "exact":
-      return rawCandidate === rawSearchText;
+      return rawCandidate === rawSearchText || searchNormalizedCandidate === searchNormalizedSearchText;
     case "caseinsensitive":
-      return normalizedCandidate === normalizedSearchText;
+      return normalizedCandidate === normalizedSearchText || searchNormalizedCandidate === searchNormalizedSearchText;
     case "startswith":
       return normalizedCandidate.startsWith(normalizedSearchText);
     case "substring":

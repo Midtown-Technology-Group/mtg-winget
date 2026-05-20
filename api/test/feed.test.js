@@ -60,6 +60,32 @@ assertSearch(
 );
 
 assertSearch(
+  "product code filter",
+  {
+    Filters: [
+      {
+        PackageMatchField: "ProductCode",
+        RequestMatch: { KeyWord: "{6DA0A05E-4595-4328-BF8B-75141A865F39}", MatchType: "Exact" }
+      }
+    ]
+  },
+  ["MidtownTechnologyGroup.Voquill"]
+);
+
+assertSearch(
+  "normalized name and publisher filter",
+  {
+    Filters: [
+      {
+        PackageMatchField: "NormalizedNameAndPublisher",
+        RequestMatch: { KeyWord: "voquill+midtown technology group llc", MatchType: "Exact" }
+      }
+    ]
+  },
+  ["MidtownTechnologyGroup.Voquill"]
+);
+
+assertSearch(
   "publisher inclusion remains broad",
   {
     Inclusions: [
