@@ -15,27 +15,28 @@ Private Winget REST source for Midtown Technology Group internal tools.
 ## Client usage
 
 ```powershell
-winget source add -n mtg-tools -a https://winget.midtowntg.com/api -t Microsoft.Rest --explicit
+winget source add -n mtg-tools -a https://winget.midtowntg.com/api -t Microsoft.Rest
 winget source update
-winget search --source mtg-tools
-winget install --id MidtownTechnologyGroup.Voquill --exact --source mtg-tools
+winget install midtowntechnologygroup.voquill
 ```
 
 WinGet defaults to the pre-indexed MSIX source type when `-t Microsoft.Rest`
 is omitted, which makes it look for `source2.msix` or `source.msix`.
 
-Keep `mtg-tools` registered as an explicit source. If it is implicit, ordinary
-commands such as `winget install --id jj-vcs.jj` query this private REST source
-alongside the public `winget` source; any stale source state or unsupported REST
-endpoint can then fail unrelated public package installs with errors like
-`0x8a150044 : The rest API endpoint is not found.` Use `--source mtg-tools`
-for MTG packages and `--source winget` for public packages when a command must
-be unambiguous.
+Do not register `mtg-tools` with `--explicit` if bare commands should work.
+Explicit sources are excluded from discovery unless every command names the
+source. If an existing machine has `mtg-tools` listed as `Explicit true`, remove
+and re-add it without `--explicit` from an elevated shell:
 
-Use `--id` and `--exact` for installs from `mtg-tools`. A positional query such
-as `winget install midtowntechnologygroup.voquill --source mtg-tools` may be
-treated by WinGet as a broad search, which can match every
-`MidtownTechnologyGroup.*` package before the client asks for a refined target.
+```powershell
+winget source remove mtg-tools
+winget source add -n mtg-tools -a https://winget.midtowntg.com/api -t Microsoft.Rest
+winget source update mtg-tools
+```
+
+Use `--source mtg-tools` when a command must be pinned to this private source,
+and `--source winget` when a public package command must avoid all private
+sources.
 
 ## Operations
 

@@ -6,11 +6,13 @@ on:
     paths:
       - "source.json"
       - "index.json"
+      - "index.html"
       - "staticwebapp.config.json"
       - "api/**"
       - "manifests/**"
       - "packageManifests/**"
       - "scripts/prepare_site.ps1"
+      - "scripts/register-source.ps1"
       - ".github/workflows/deploy-feed.yml"
   workflow_dispatch:
 
