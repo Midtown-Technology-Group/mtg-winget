@@ -34,15 +34,14 @@
         "installers": [
           {
             "architecture": "x64",
-            "installerType": "msi",
-            "scope": "machine",
-            "installerUrl": "https://github.com/MTG-Thomas/voquill/releases/download/mtg-v1.3.21/Voquill_1.3.21_x64_en-US.msi",
-            "installerSha256": "50F74DD0B3AF339D3A31DE5B838B4F9AF2F7782E216CA54D1362FB0D639CBBDD",
-            "productCode": "{6DA0A05E-4595-4328-BF8B-75141A865F39}",
+            "installerType": "nullsoft",
+            "scope": "user",
+            "installerUrl": "https://github.com/MTG-Thomas/voquill/releases/download/mtg-v1.3.21/Voquill_1.3.21_x64-setup.exe",
+            "installerSha256": "907E8AF10A9F8DBD7A63CC60949C7FDA53FA0AFBEB48AB79CFD8CA1C1BE48280",
             "upgradeBehavior": "install",
             "installerSwitches": {
-              "silent": "/qn",
-              "silentWithProgress": "/qb"
+              "silent": "/S",
+              "silentWithProgress": "/S"
             }
           }
         ]

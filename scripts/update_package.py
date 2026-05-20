@@ -50,6 +50,7 @@ ManifestType: version
 ManifestVersion: {MANIFEST_VERSION}
 """
 
+    product_code_yaml = f"ProductCode: '{product_code}'\n" if product_code else ""
     installer_yaml = f"""# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
 
 PackageIdentifier: {package_id}
@@ -58,7 +59,7 @@ MinimumOSVersion: 10.0.0.0
 InstallerType: {package_meta['installerType']}
 Scope: {package_meta['scope']}
 UpgradeBehavior: {package_meta['upgradeBehavior']}
-ProductCode: '{product_code}'
+{product_code_yaml}\
 Installers:
   - Architecture: {package_meta['architecture']}
     InstallerUrl: {installer_url}
@@ -101,6 +102,21 @@ ManifestVersion: {MANIFEST_VERSION}
     (manifest_dir / f"{version}.yaml").write_text(installer_yaml, encoding="utf-8")
     (manifest_dir / "locale.yaml").write_text(locale_yaml, encoding="utf-8")
 
+    installer = {
+        "architecture": package_meta["architecture"],
+        "installerType": package_meta["installerType"],
+        "scope": package_meta["scope"],
+        "installerUrl": installer_url,
+        "installerSha256": sha256,
+        "upgradeBehavior": package_meta["upgradeBehavior"],
+        "installerSwitches": {
+            "silent": package_meta["silent"],
+            "silentWithProgress": package_meta["silentWithProgress"],
+        },
+    }
+    if product_code:
+        installer["productCode"] = product_code
+
     package_manifest = {
         "$schema": "https://aka.ms/winget-rest-source.schema.json",
         "data": {
@@ -126,21 +142,7 @@ ManifestVersion: {MANIFEST_VERSION}
                         "releaseNotes": package_meta["releaseNotes"],
                         "releaseNotesUrl": f"https://github.com/{package_meta['repo']}/releases/tag/{tag}",
                     },
-                    "installers": [
-                        {
-                            "architecture": package_meta["architecture"],
-                            "installerType": package_meta["installerType"],
-                            "scope": package_meta["scope"],
-                            "installerUrl": installer_url,
-                            "installerSha256": sha256,
-                            "productCode": product_code,
-                            "upgradeBehavior": package_meta["upgradeBehavior"],
-                            "installerSwitches": {
-                                "silent": package_meta["silent"],
-                                "silentWithProgress": package_meta["silentWithProgress"],
-                            },
-                        }
-                    ],
+                    "installers": [installer],
                 }
             ],
         },

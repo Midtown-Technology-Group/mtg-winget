@@ -24,11 +24,11 @@
   "releaseNotes": "Adds Windows 11 native styling defaults, CI release fixes, sccache build acceleration, and macOS release artifacts.",
   "repo": "MTG-Thomas/voquill",
   "releaseTagTemplate": "mtg-v{version}",
-  "assetName": "Voquill_1.3.21_x64_en-US.msi",
+  "assetName": "Voquill_1.3.21_x64-setup.exe",
   "architecture": "x64",
-  "installerType": "msi",
-  "scope": "machine",
+  "installerType": "nullsoft",
+  "scope": "user",
   "upgradeBehavior": "install",
-  "silent": "/qn",
-  "silentWithProgress": "/qb"
+  "silent": "/S",
+  "silentWithProgress": "/S"
 }
