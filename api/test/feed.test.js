@@ -73,6 +73,30 @@ assertSearch(
 );
 
 assertSearch(
+  "normalized package name and publisher filter (winget client field name)",
+  {
+    Filters: [
+      {
+        PackageMatchField: "NormalizedPackageNameAndPublisher",
+        RequestMatch: { KeyWord: "voquill+midtown technology group llc", MatchType: "Exact" }
+      }
+    ]
+  },
+  ["MidtownTechnologyGroup.Voquill"]
+);
+
+const unsupportedNormalizedAlias = feed.manifestSearch({
+  Filters: [
+    {
+      PackageMatchField: "NormalizedPackageNameAndPublisher",
+      RequestMatch: { KeyWord: "not-a-real-package", MatchType: "Exact" }
+    }
+  ]
+});
+assert.deepStrictEqual(packageIdentifiers(unsupportedNormalizedAlias), []);
+assert.deepStrictEqual(unsupportedNormalizedAlias.UnsupportedPackageMatchFields, []);
+
+assertSearch(
   "publisher inclusion remains broad",
   {
     Inclusions: [
