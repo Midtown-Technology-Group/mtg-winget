@@ -184,6 +184,7 @@ function packageFieldValues(pkg, packageMatchField) {
         (version.installers || []).map((installer) => installer.productCode)
       );
     case "normalizednameandpublisher":
+    case "normalizedpackagenameandpublisher":
       return [
         `${normalizeSearchValue(pkg.PackageName)} ${normalizeSearchValue(pkg.Publisher)}`,
         ...locales.map(
@@ -211,6 +212,7 @@ function isSupportedPackageMatchField(packageMatchField) {
     "moniker",
     "name",
     "normalizednameandpublisher",
+    "normalizedpackagenameandpublisher",
     "packagefamilyname",
     "packageidentifier",
     "packagename",
