@@ -67,7 +67,7 @@ function searchResponse(data, extra = {}) {
 function information() {
   return response({
     SourceIdentifier: "mtg-tools",
-    ServerSupportedVersions: ["1.4.0"]
+    ServerSupportedVersions: ["1.4.0", "1.7.0"]
   });
 }
 
