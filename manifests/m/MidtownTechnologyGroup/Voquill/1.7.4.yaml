@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.Voquill
+PackageVersion: 1.7.4
+MinimumOSVersion: 10.0.0.0
+InstallerType: wix
+Scope: machine
+UpgradeBehavior: install
+ProductCode: '{9255DDE1-A78E-487A-BAE2-BDAC95E10861}'
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/MTG-Thomas/voquill/releases/download/mtg-v1.7.4/Voquill_1.7.4_x64_en-US.msi
+    InstallerSha256: 7b3b09e852967cdda433c8c1f45953f5ae059bfde0c1af0e31d8c1d7002760ca
+    InstallerSwitches:
+      Silent: /qn
+      SilentWithProgress: /qb
+ManifestType: installer
+ManifestVersion: 1.5.0

@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
 
 PackageIdentifier: MidtownTechnologyGroup.Voquill
-PackageVersion: 1.3.21
+PackageVersion: 1.7.4
 PackageLocale: en-US
 Publisher: Midtown Technology Group LLC
 PublisherUrl: https://midtowntg.com
@@ -25,7 +25,7 @@ Tags:
   - productivity
   - midtown
 ReleaseNotes: |
-  Adds Windows 11 native styling defaults, CI release fixes, sccache build acceleration, and macOS release artifacts.
-ReleaseNotesUrl: https://github.com/MTG-Thomas/voquill/releases/tag/mtg-v1.3.21
+  Hotkey registration diagnostics (names conflicting apps), idempotent shortcut binding across Windows/macOS/X11, verified MSI major-upgrade path, OpenVINO NPU model catalog coverage.
+ReleaseNotesUrl: https://github.com/MTG-Thomas/voquill/releases/tag/mtg-v1.7.4
 ManifestType: defaultLocale
 ManifestVersion: 1.5.0
