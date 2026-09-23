@@ -1,0 +1,52 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.Voquill",
+    "versions": [
+      {
+        "packageVersion": "1.7.4",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/MTG-Thomas/voquill/issues",
+          "author": "Jack Brumley, MTG-Thomas fork maintainers",
+          "packageName": "Voquill",
+          "packageUrl": "https://github.com/MTG-Thomas/voquill",
+          "license": "AGPL-3.0-only",
+          "licenseUrl": "https://github.com/MTG-Thomas/voquill/blob/main/LICENSE",
+          "copyright": "Copyright (c) Voquill contributors",
+          "shortDescription": "Push-to-talk dictation app with local transcription support",
+          "description": "Cross-platform push-to-talk dictation app with Whisper-powered speech recognition and MTG fork enhancements for local Windows dictation workflows.",
+          "moniker": "voquill",
+          "tags": [
+            "dictation",
+            "speech-to-text",
+            "whisper",
+            "openvino",
+            "npu",
+            "productivity",
+            "midtown"
+          ],
+          "releaseNotes": "Hotkey registration diagnostics (names conflicting apps), idempotent shortcut binding across Windows/macOS/X11, verified MSI major-upgrade path, OpenVINO NPU model catalog coverage.",
+          "releaseNotesUrl": "https://github.com/MTG-Thomas/voquill/releases/tag/mtg-v1.7.4"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "wix",
+            "scope": "machine",
+            "installerUrl": "https://github.com/MTG-Thomas/voquill/releases/download/mtg-v1.7.4/Voquill_1.7.4_x64_en-US.msi",
+            "installerSha256": "7b3b09e852967cdda433c8c1f45953f5ae059bfde0c1af0e31d8c1d7002760ca",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            },
+            "productCode": "{9255DDE1-A78E-487A-BAE2-BDAC95E10861}"
+          }
+        ]
+      }
+    ]
+  }
+}
