@@ -21,14 +21,14 @@
     "productivity",
     "midtown"
   ],
-  "releaseNotes": "Adds Windows 11 native styling defaults, CI release fixes, sccache build acceleration, and macOS release artifacts.",
+  "releaseNotes": "Hotkey registration diagnostics (names conflicting apps), idempotent shortcut binding across Windows/macOS/X11, verified MSI major-upgrade path, OpenVINO NPU model catalog coverage.",
   "repo": "MTG-Thomas/voquill",
   "releaseTagTemplate": "mtg-v{version}",
-  "assetName": "Voquill_1.3.21_x64-setup.exe",
+  "assetName": "Voquill_1.7.4_x64_en-US.msi",
   "architecture": "x64",
-  "installerType": "nullsoft",
-  "scope": "user",
+  "installerType": "wix",
+  "scope": "machine",
   "upgradeBehavior": "install",
-  "silent": "/S",
-  "silentWithProgress": "/S"
+  "silent": "/qn",
+  "silentWithProgress": "/qb"
 }
