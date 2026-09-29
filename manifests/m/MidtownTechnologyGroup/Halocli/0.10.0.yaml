@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+
+PackageIdentifier: MidtownTechnologyGroup.Halocli
+PackageVersion: 0.10.0
+MinimumOSVersion: 10.0.0.0
+InstallerType: msi
+Scope: machine
+UpgradeBehavior: install
+ProductCode: '{7C8E225D-39AA-4CC8-8CEE-8D4AC2493F22}'
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/Midtown-Technology-Group/halocli/releases/download/v0.10.0/halocli.msi
+    InstallerSha256: 382185c93d02ab92466069488cfad8a7022d0f7573e406c8d68231eb2ed197b3
+    InstallerSwitches:
+      Silent: /qn
+      SilentWithProgress: /qb
+ManifestType: installer
+ManifestVersion: 1.5.0
