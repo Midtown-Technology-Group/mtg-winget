@@ -1,0 +1,49 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.Halocli",
+    "versions": [
+      {
+        "packageVersion": "1.3.0",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/Midtown-Technology-Group/halocli/issues",
+          "author": "Thomas Bray",
+          "packageName": "Halocli",
+          "packageUrl": "https://github.com/Midtown-Technology-Group/halocli",
+          "license": "GPL-3.0-only",
+          "licenseUrl": "https://github.com/Midtown-Technology-Group/halocli/blob/main/LICENSE",
+          "copyright": "Copyright (c) 2026 Midtown Technology Group LLC",
+          "shortDescription": "Standalone HaloPSA CLI for safe operator and automation workflows",
+          "description": "Standalone HaloPSA CLI for safe operator and automation workflows",
+          "moniker": "halocli",
+          "tags": [
+            "halo",
+            "cli",
+            "productivity",
+            "midtown"
+          ],
+          "releaseNotes": "Initial MSI release for Halocli.",
+          "releaseNotesUrl": "https://github.com/Midtown-Technology-Group/halocli/releases/tag/v1.3.0"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "msi",
+            "scope": "machine",
+            "installerUrl": "https://github.com/Midtown-Technology-Group/halocli/releases/download/v1.3.0/halocli.msi",
+            "installerSha256": "df919fda296fc95a3c612b41fd6d0b66871760bba2e2663a1f355f0be9c9ea41",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            },
+            "productCode": "{A472F42B-ABD8-4C2F-A4AE-AEA389990339}"
+          }
+        ]
+      }
+    ]
+  }
+}
