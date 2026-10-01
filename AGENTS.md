@@ -14,6 +14,6 @@ Use [.github/workflows/update-package.yml](.github/workflows/update-package.yml)
 
 ## Client and release boundaries
 
-The source is `Microsoft.Rest`; retain that distinction from pre-indexed MSIX sources. `--explicit` changes discovery, and `--source` pins a client operation. Do not remove or re-register a user's sources as a validation shortcut.
+The source is `Microsoft.Rest`; retain that distinction from `Microsoft.PreIndexed.Package` sources. `--explicit` changes discovery, and `--source` pins a client operation. Do not remove or re-register a user's sources as a validation shortcut.
 
 Publishing the feed or dispatching updates affects downstream installations. Name the exact package and environment, retain Azure authentication boundaries, and verify deployed feed/client behavior independently when authorized. Keep deployment and dispatch credentials out of committed files and logs.
