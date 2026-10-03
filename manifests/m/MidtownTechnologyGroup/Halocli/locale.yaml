@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
 
 PackageIdentifier: MidtownTechnologyGroup.Halocli
-PackageVersion: 1.14.0
+PackageVersion: 1.15.0
 PackageLocale: en-US
 Publisher: Midtown Technology Group LLC
 PublisherUrl: https://midtowntg.com
@@ -23,6 +23,6 @@ Tags:
   - midtown
 ReleaseNotes: |
   Initial MSI release for Halocli.
-ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/halocli/releases/tag/v1.14.0
+ReleaseNotesUrl: https://github.com/Midtown-Technology-Group/halocli/releases/tag/v1.15.0
 ManifestType: defaultLocale
 ManifestVersion: 1.5.0
