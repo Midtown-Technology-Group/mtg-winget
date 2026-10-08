@@ -131,8 +131,7 @@ function pickSearchText(body) {
     body?.SearchTerm
   ]
     .filter(Boolean)
-    .join(" ")
-    .trim();
+    .join(" ");
 }
 
 function normalizeMatchType(value) {
@@ -304,9 +303,9 @@ function manifestSearch(body) {
     throw new RangeError(`Search accepts at most ${MAX_SEARCH_FILTERS} inclusions and filters`);
   }
 
-  const searchText = pickSearchText(body || {});
+  const rawSearchText = pickSearchText(body || {});
   if (
-    searchText.length > MAX_SEARCH_TEXT_LENGTH ||
+    rawSearchText.length > MAX_SEARCH_TEXT_LENGTH ||
     [...inclusions, ...filters].some(
       (filter) =>
         pickRequestMatchText(filter).length > MAX_SEARCH_TEXT_LENGTH ||
@@ -316,6 +315,7 @@ function manifestSearch(body) {
     throw new RangeError(`Search text must be at most ${MAX_SEARCH_TEXT_LENGTH} characters`);
   }
 
+  const searchText = rawSearchText.trim();
   const manifestCache = new Map();
   const unsupportedFields = collectUnsupportedPackageMatchFields([...inclusions, ...filters]);
   const packages = packageIndex()

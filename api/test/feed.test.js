@@ -127,6 +127,7 @@ assert.throws(
   RangeError
 );
 assert.throws(() => feed.manifestSearch({ Query: { KeyWord: "x".repeat(257) } }), RangeError);
+assert.throws(() => feed.manifestSearch({ Query: { KeyWord: `x${" ".repeat(256)}` } }), RangeError);
 assert.throws(
   () => feed.manifestSearch({ Filters: [{ PackageMatchField: "Publisher", RequestMatch: { KeyWord: "x".repeat(257) } }] }),
   RangeError
