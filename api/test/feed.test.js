@@ -1,4 +1,5 @@
 const assert = require("assert");
+const fs = require("fs");
 
 const feed = require("../lib/feed");
 
@@ -121,4 +122,50 @@ const unsupportedResponse = feed.manifestSearch({
 assert.deepStrictEqual(packageIdentifiers(unsupportedResponse), []);
 assert.deepStrictEqual(unsupportedResponse.UnsupportedPackageMatchFields, ["Unsupported"]);
 
-console.log("feed tests passed");
+assert.throws(
+  () => feed.manifestSearch({ Filters: Array.from({ length: 33 }, () => ({ PackageMatchField: "Publisher" })) }),
+  RangeError
+);
+assert.throws(() => feed.manifestSearch({ Query: { KeyWord: "x".repeat(257) } }), RangeError);
+assert.throws(
+  () => feed.manifestSearch({ Filters: [{ PackageMatchField: "Publisher", RequestMatch: { KeyWord: "x".repeat(257) } }] }),
+  RangeError
+);
+
+const originalReadFileSync = fs.readFileSync;
+let manifestReads = 0;
+fs.readFileSync = function (...args) {
+  if (String(args[0]).includes("packageManifests")) {
+    manifestReads++;
+  }
+  return originalReadFileSync.apply(this, args);
+};
+try {
+  assertSearch("index-only filters", {
+    Filters: Array.from({ length: 32 }, () => ({
+      PackageMatchField: "Publisher",
+      RequestMatch: { KeyWord: "Midtown Technology Group LLC" }
+    }))
+  }, 14);
+  assert.strictEqual(manifestReads, 0, "index-only search must not read manifests");
+
+  feed.manifestSearch({ Inclusions: [
+    { PackageMatchField: "ProductCode", RequestMatch: { KeyWord: "does-not-exist" } },
+    { PackageMatchField: "ProductCode", RequestMatch: { KeyWord: "does-not-exist" } }
+  ] });
+  assert.ok(manifestReads > 0, "product-code search must read a manifest");
+  assert.ok(manifestReads <= 14, "product-code manifests are read at most once per package");
+} finally {
+  fs.readFileSync = originalReadFileSync;
+}
+
+const manifestSearchHandler = require("../manifestSearch");
+(async () => {
+  const context = {};
+  await manifestSearchHandler(context, { body: { Filters: Array.from({ length: 33 }, () => ({})) } });
+  assert.strictEqual(context.res.status, 400);
+  console.log("feed tests passed");
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

@@ -2,6 +2,8 @@ const fs = require("fs");
 const path = require("path");
 
 const DATA_ROOT = process.env.WINGET_DATA_ROOT || path.join(__dirname, "..", "data");
+const MAX_SEARCH_FILTERS = 32;
+const MAX_SEARCH_TEXT_LENGTH = 256;
 
 const localeMap = {
   packageLocale: "PackageLocale",
@@ -156,10 +158,9 @@ function pickRequestMatchText(filter) {
     .join(" ");
 }
 
-function packageFieldValues(pkg, packageMatchField) {
+function packageFieldValues(pkg, packageMatchField, manifestCache) {
   const field = String(packageMatchField || "").trim().toLowerCase();
   const locales = (pkg.Versions || []).map((version) => version.DefaultLocale || {});
-  const manifest = packageManifestRaw(pkg);
 
   switch (field) {
     case "packageidentifier":
@@ -180,6 +181,10 @@ function packageFieldValues(pkg, packageMatchField) {
     case "shortdescription":
       return locales.map((locale) => locale.ShortDescription);
     case "productcode":
+      if (!manifestCache.has(pkg.PackageIdentifier)) {
+        manifestCache.set(pkg.PackageIdentifier, packageManifestRaw(pkg));
+      }
+      const manifest = manifestCache.get(pkg.PackageIdentifier);
       return (manifest?.versions || []).flatMap((version) =>
         (version.installers || []).map((installer) => installer.productCode)
       );
@@ -249,13 +254,13 @@ function valueMatches(candidate, searchText, matchType) {
   }
 }
 
-function packageMatchesFilter(pkg, filter) {
+function packageMatchesFilter(pkg, filter, manifestCache) {
   const searchText = pickRequestMatchText(filter);
   if (!searchText) {
     return true;
   }
 
-  const values = packageFieldValues(pkg, filter?.PackageMatchField);
+  const values = packageFieldValues(pkg, filter?.PackageMatchField, manifestCache);
   if (values.length === 0) {
     return false;
   }
@@ -293,9 +298,25 @@ function collectUnsupportedPackageMatchFields(filters) {
 }
 
 function manifestSearch(body) {
-  const searchText = pickSearchText(body || {});
   const inclusions = Array.isArray(body?.Inclusions) ? body.Inclusions : [];
   const filters = Array.isArray(body?.Filters) ? body.Filters : [];
+  if (inclusions.length + filters.length > MAX_SEARCH_FILTERS) {
+    throw new RangeError(`Search accepts at most ${MAX_SEARCH_FILTERS} inclusions and filters`);
+  }
+
+  const searchText = pickSearchText(body || {});
+  if (
+    searchText.length > MAX_SEARCH_TEXT_LENGTH ||
+    [...inclusions, ...filters].some(
+      (filter) =>
+        pickRequestMatchText(filter).length > MAX_SEARCH_TEXT_LENGTH ||
+        String(filter?.PackageMatchField || "").length > MAX_SEARCH_TEXT_LENGTH
+    )
+  ) {
+    throw new RangeError(`Search text must be at most ${MAX_SEARCH_TEXT_LENGTH} characters`);
+  }
+
+  const manifestCache = new Map();
   const unsupportedFields = collectUnsupportedPackageMatchFields([...inclusions, ...filters]);
   const packages = packageIndex()
     .filter((pkg) => {
@@ -303,11 +324,11 @@ function manifestSearch(body) {
         return false;
       }
 
-      if (inclusions.length > 0 && !inclusions.some((filter) => packageMatchesFilter(pkg, filter))) {
+      if (inclusions.length > 0 && !inclusions.some((filter) => packageMatchesFilter(pkg, filter, manifestCache))) {
         return false;
       }
 
-      return filters.every((filter) => packageMatchesFilter(pkg, filter));
+      return filters.every((filter) => packageMatchesFilter(pkg, filter, manifestCache));
     })
     .map((pkg) => ({
       PackageIdentifier: pkg.PackageIdentifier,
