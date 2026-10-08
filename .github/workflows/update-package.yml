@@ -24,30 +24,18 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    env:
+      PACKAGE_KEY: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.package_key || inputs.package_key }}
+      PACKAGE_VERSION: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.version || inputs.version }}
+      INSTALLER_URL: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.installer_url || inputs.installer_url }}
+      INSTALLER_SHA256: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.sha256 || inputs.sha256 }}
+      PRODUCT_CODE: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.product_code || inputs.product_code }}
     permissions:
       contents: write
       actions: write
       pull-requests: write
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
-
-      - name: Set package metadata
-        id: payload
-        shell: bash
-        run: |
-          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
-            echo "package_key=${{ github.event.client_payload.package_key }}" >> "$GITHUB_OUTPUT"
-            echo "version=${{ github.event.client_payload.version }}" >> "$GITHUB_OUTPUT"
-            echo "installer_url=${{ github.event.client_payload.installer_url }}" >> "$GITHUB_OUTPUT"
-            echo "sha256=${{ github.event.client_payload.sha256 }}" >> "$GITHUB_OUTPUT"
-            echo "product_code=${{ github.event.client_payload.product_code }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "package_key=${{ inputs.package_key }}" >> "$GITHUB_OUTPUT"
-            echo "version=${{ inputs.version }}" >> "$GITHUB_OUTPUT"
-            echo "installer_url=${{ inputs.installer_url }}" >> "$GITHUB_OUTPUT"
-            echo "sha256=${{ inputs.sha256 }}" >> "$GITHUB_OUTPUT"
-            echo "product_code=${{ inputs.product_code }}" >> "$GITHUB_OUTPUT"
-          fi
 
       - name: Set up Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
@@ -57,18 +45,18 @@ jobs:
       - name: Update package manifests
         run: |
           python scripts/update_package.py \
-            "${{ steps.payload.outputs.package_key }}" \
-            "${{ steps.payload.outputs.version }}" \
-            "${{ steps.payload.outputs.installer_url }}" \
-            "${{ steps.payload.outputs.sha256 }}" \
-            "${{ steps.payload.outputs.product_code }}"
+            "$PACKAGE_KEY" \
+            "$PACKAGE_VERSION" \
+            "$INSTALLER_URL" \
+            "$INSTALLER_SHA256" \
+            "$PRODUCT_CODE"
 
       - name: Commit changes
         id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          branch="automation/update-${{ steps.payload.outputs.package_key }}-${{ steps.payload.outputs.version }}-${{ github.run_id }}"
+          branch="automation/update-${PACKAGE_KEY}-${PACKAGE_VERSION}-${GITHUB_RUN_ID}"
           git switch -c "$branch"
           git add index.json manifests packageManifests
           if git diff --cached --quiet; then
@@ -76,7 +64,7 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git commit -m "Update ${{ steps.payload.outputs.package_key }} to ${{ steps.payload.outputs.version }}"
+          git commit -m "Update $PACKAGE_KEY to $PACKAGE_VERSION"
           git push --set-upstream origin "$branch"
           echo "changed=true" >> "$GITHUB_OUTPUT"
           echo "branch=$branch" >> "$GITHUB_OUTPUT"
@@ -85,6 +73,7 @@ jobs:
         if: steps.commit.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.MTG_WINGET_PR_TOKEN }}
+          UPDATE_BRANCH: ${{ steps.commit.outputs.branch }}
         run: |
           if [ -z "$GH_TOKEN" ]; then
             echo "MTG_WINGET_PR_TOKEN is required because GitHub Actions cannot create pull requests with GITHUB_TOKEN in this repository."
@@ -92,6 +81,6 @@ jobs:
           fi
           gh pr create \
             --base main \
-            --head "${{ steps.commit.outputs.branch }}" \
-            --title "Update ${{ steps.payload.outputs.package_key }} to ${{ steps.payload.outputs.version }}" \
-            --body "Generated WinGet manifests for ${{ steps.payload.outputs.package_key }} ${{ steps.payload.outputs.version }}."
+            --head "$UPDATE_BRANCH" \
+            --title "Update $PACKAGE_KEY to $PACKAGE_VERSION" \
+            --body "Generated WinGet manifests for $PACKAGE_KEY $PACKAGE_VERSION."

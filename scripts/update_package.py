@@ -1,13 +1,39 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
+from urllib.parse import urlsplit
+from uuid import UUID
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = ROOT
 MANIFEST_VERSION = "1.5.0"
+PACKAGE_KEY_RE = re.compile(r"[a-z0-9][a-z0-9_-]*\Z")
+VERSION_RE = re.compile(r"[0-9]+\.[0-9]+\.[0-9]+(?:\.[0-9]+)?(?:-[A-Za-z0-9.-]+)?\Z")
+SHA256_RE = re.compile(r"[0-9a-fA-F]{64}\Z")
+
+
+def validate_metadata(package_key: str, version: str, installer_url: str, sha256: str, product_code: str) -> None:
+    """Reject unsafe dispatch values before using them as paths or manifest data."""
+    if not PACKAGE_KEY_RE.fullmatch(package_key) or not (SOURCE_ROOT / "packages" / f"{package_key}.json").is_file():
+        raise ValueError("unknown or invalid package key")
+    if not VERSION_RE.fullmatch(version):
+        raise ValueError("invalid package version")
+    if not SHA256_RE.fullmatch(sha256):
+        raise ValueError("invalid installer SHA256")
+    if any(char.isspace() or ord(char) < 32 for char in installer_url):
+        raise ValueError("invalid installer URL")
+    parsed_url = urlsplit(installer_url)
+    if parsed_url.scheme != "https" or not parsed_url.hostname or parsed_url.username or parsed_url.password:
+        raise ValueError("installer URL must be HTTPS without embedded credentials")
+    if product_code:
+        try:
+            UUID(product_code)
+        except ValueError as error:
+            raise ValueError("invalid MSI ProductCode") from error
 
 
 def load_json(path: Path) -> dict:
@@ -25,6 +51,7 @@ def main() -> int:
         )
 
     package_key, version, installer_url, sha256, product_code = sys.argv[1:]
+    validate_metadata(package_key, version, installer_url, sha256, product_code)
 
     package_meta = load_json(SOURCE_ROOT / "packages" / f"{package_key}.json")
     package_id = package_meta["packageIdentifier"]
