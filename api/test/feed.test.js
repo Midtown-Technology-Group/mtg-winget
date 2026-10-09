@@ -1,5 +1,5 @@
 const assert = require("assert");
-const crypto = require("crypto");
+const crypto = require("node:crypto");
 const fs = require("fs");
 
 const auth = require("../lib/auth");

@@ -1,4 +1,4 @@
-const crypto = require("crypto");
+const crypto = require("node:crypto");
 
 const TENANT_ID = "a3599b15-c39c-4b41-a219-7e24dd5b5190";
 const RESOURCE = "https://management.core.windows.net/";
@@ -63,7 +63,7 @@ async function loadSigningKeys(fetchImpl, nowMilliseconds, forceRefresh = false)
 
     const body = await response.json();
     if (!Array.isArray(body.keys)) {
-      throw new Error("Microsoft Entra signing-key response did not contain keys");
+      throw new TypeError("Microsoft Entra signing-key response did not contain keys");
     }
 
     jwksCache = {
@@ -76,6 +76,36 @@ async function loadSigningKeys(fetchImpl, nowMilliseconds, forceRefresh = false)
   });
 
   return jwksInFlight;
+}
+
+function validateClaims(claims, nowMilliseconds) {
+  const nowSeconds = Math.floor(nowMilliseconds / 1000);
+  if (typeof claims.exp !== "number" || claims.exp <= nowSeconds - CLOCK_SKEW_SECONDS) {
+    throw new AuthenticationError("Expired JWT");
+  }
+  if (typeof claims.nbf === "number" && claims.nbf > nowSeconds + CLOCK_SKEW_SECONDS) {
+    throw new AuthenticationError("JWT is not yet valid");
+  }
+  if (claims.tid !== TENANT_ID) {
+    throw new AuthenticationError("JWT tenant is not allowed");
+  }
+
+  const allowedIssuers = new Set([
+    `https://sts.windows.net/${TENANT_ID}/`,
+    `https://login.microsoftonline.com/${TENANT_ID}/v2.0`
+  ]);
+  if (!allowedIssuers.has(claims.iss)) {
+    throw new AuthenticationError("JWT issuer is not allowed");
+  }
+  if (![...ALLOWED_AUDIENCES].some((audience) => claimContains(claims.aud, audience))) {
+    throw new AuthenticationError("JWT audience is not allowed");
+  }
+  if ((claims.azp || claims.appid) !== WINGET_CLIENT_ID) {
+    throw new AuthenticationError("JWT client is not WinGet");
+  }
+  if (typeof claims.oid !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(claims.oid)) {
+    throw new AuthenticationError("JWT does not identify a user");
+  }
 }
 
 async function verifyAccessToken(token, options = {}) {
@@ -121,40 +151,14 @@ async function verifyAccessToken(token, options = {}) {
     throw new AuthenticationError("Invalid JWT signature");
   }
 
-  const nowSeconds = Math.floor(nowMilliseconds / 1000);
-  if (typeof claims.exp !== "number" || claims.exp <= nowSeconds - CLOCK_SKEW_SECONDS) {
-    throw new AuthenticationError("Expired JWT");
-  }
-  if (typeof claims.nbf === "number" && claims.nbf > nowSeconds + CLOCK_SKEW_SECONDS) {
-    throw new AuthenticationError("JWT is not yet valid");
-  }
-  if (claims.tid !== TENANT_ID) {
-    throw new AuthenticationError("JWT tenant is not allowed");
-  }
-
-  const allowedIssuers = new Set([
-    `https://sts.windows.net/${TENANT_ID}/`,
-    `https://login.microsoftonline.com/${TENANT_ID}/v2.0`
-  ]);
-  if (!allowedIssuers.has(claims.iss)) {
-    throw new AuthenticationError("JWT issuer is not allowed");
-  }
-  if (![...ALLOWED_AUDIENCES].some((audience) => claimContains(claims.aud, audience))) {
-    throw new AuthenticationError("JWT audience is not allowed");
-  }
-  if ((claims.azp || claims.appid) !== WINGET_CLIENT_ID) {
-    throw new AuthenticationError("JWT client is not WinGet");
-  }
-  if (typeof claims.oid !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(claims.oid)) {
-    throw new AuthenticationError("JWT does not identify a user");
-  }
+  validateClaims(claims, nowMilliseconds);
 
   return claims;
 }
 
 function bearerToken(req) {
   const header = req?.headers?.authorization || req?.headers?.Authorization;
-  const match = typeof header === "string" && header.match(/^Bearer\s+([^\s]+)$/i);
+  const match = typeof header === "string" && /^Bearer\s+([^\s]+)$/i.exec(header);
   return match ? match[1] : null;
 }
 
