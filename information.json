@@ -2,8 +2,13 @@
   "Data": {
     "SourceIdentifier": "mtg-tools",
     "ServerSupportedVersions": [
-      "1.4.0",
       "1.7.0"
-    ]
+    ],
+    "Authentication": {
+      "AuthenticationType": "microsoftEntraId",
+      "MicrosoftEntraIdAuthenticationInfo": {
+        "Resource": "https://management.core.windows.net/"
+      }
+    }
   }
 }

@@ -20,6 +20,12 @@ winget source update
 winget install midtowntechnologygroup.voquill
 ```
 
+The source requires WinGet 1.7 or newer. WinGet obtains a Microsoft Entra token
+for Azure Resource Manager and the feed accepts only tokens issued by the
+Midtown tenant to the WinGet client. Interactive commands may prompt the user
+to sign in with their Midtown account. Package search and manifest endpoints
+return `401` without a valid token.
+
 WinGet defaults to the pre-indexed MSIX source type when `-t Microsoft.Rest`
 is omitted, which makes it look for `source2.msix` or `source.msix`.
 
