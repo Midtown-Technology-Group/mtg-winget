@@ -1,6 +1,11 @@
 const feed = require("../lib/feed");
+const auth = require("../lib/auth");
 
 module.exports = async function (context, req) {
+  if (!await auth.authorize(context, req)) {
+    return;
+  }
+
   try {
     context.res = {
       status: 200,

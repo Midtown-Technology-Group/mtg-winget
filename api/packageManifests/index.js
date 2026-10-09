@@ -1,6 +1,11 @@
 const feed = require("../lib/feed");
+const auth = require("../lib/auth");
 
 module.exports = async function (context, req) {
+  if (!await auth.authorize(context, req)) {
+    return;
+  }
+
   const urlPackageId = req.url
     ?.split("?")[0]
     ?.split("/packageManifests/")[1];
