@@ -193,6 +193,54 @@ const manifestSearchHandler = require("../manifestSearch");
   const validToken = makeToken(privateKey, kid, baseClaims);
   await auth.verifyAccessToken(validToken, { keys: [jwk], nowMilliseconds });
 
+  const { publicKey: rotatedPublicKey, privateKey: rotatedPrivateKey } =
+    crypto.generateKeyPairSync("rsa", { modulusLength: 2048 });
+  const rotatedJwk = rotatedPublicKey.export({ format: "jwk" });
+  rotatedJwk.kid = "rotated-key";
+  const rotatedToken = makeToken(rotatedPrivateKey, rotatedJwk.kid, baseClaims);
+  const unknownToken = makeToken(privateKey, "unknown-key", baseClaims);
+  const fetchResponses = [[jwk], [jwk], [rotatedJwk]];
+  const fetchSignals = [];
+  let fetchCalls = 0;
+  let releaseInitialFetch;
+  const initialFetchBlocked = new Promise((resolve) => {
+    releaseInitialFetch = resolve;
+  });
+  const fetchImpl = async (_url, options) => {
+    const responseNumber = fetchCalls++;
+    fetchSignals.push(options.signal);
+    if (responseNumber === 0) {
+      await initialFetchBlocked;
+    }
+    return {
+      ok: true,
+      json: async () => ({ keys: fetchResponses[responseNumber] })
+    };
+  };
+
+  auth.resetKeyCacheForTests();
+  const concurrentUnknownTokens = [
+    auth.verifyAccessToken(unknownToken, { fetchImpl, nowMilliseconds }),
+    auth.verifyAccessToken(unknownToken, { fetchImpl, nowMilliseconds })
+  ];
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.strictEqual(fetchCalls, 1, "concurrent cache misses share the initial JWKS fetch");
+  releaseInitialFetch();
+  await Promise.all(concurrentUnknownTokens.map((verification) => assert.rejects(verification)));
+  assert.strictEqual(fetchCalls, 2, "concurrent unknown-kid refreshes share one JWKS fetch");
+  assert.ok(fetchSignals.every((signal) => signal instanceof AbortSignal), "JWKS fetches have abort signals");
+
+  await assert.rejects(
+    auth.verifyAccessToken(unknownToken, { fetchImpl, nowMilliseconds: nowMilliseconds + 999 })
+  );
+  assert.strictEqual(fetchCalls, 2, "unknown-kid refreshes are limited during the short interval");
+
+  await auth.verifyAccessToken(rotatedToken, {
+    fetchImpl,
+    nowMilliseconds: nowMilliseconds + 1000
+  });
+  assert.strictEqual(fetchCalls, 3, "a rotated signing key is fetched after the short interval");
+
   for (const changedClaims of [
     { ...baseClaims, tid: "00000000-0000-0000-0000-000000000000" },
     { ...baseClaims, aud: "https://graph.microsoft.com" },

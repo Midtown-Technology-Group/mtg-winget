@@ -10,8 +10,12 @@ const WINGET_CLIENT_ID = "7b8ea11a-7f45-4b3a-ab51-794d5863af15";
 const JWKS_URL = `https://login.microsoftonline.com/${TENANT_ID}/discovery/v2.0/keys`;
 const CLOCK_SKEW_SECONDS = 300;
 const JWKS_CACHE_MILLISECONDS = 60 * 60 * 1000;
+const JWKS_MIN_REFRESH_MILLISECONDS = 1000;
+const JWKS_FETCH_TIMEOUT_MILLISECONDS = 5000;
 
 let jwksCache;
+let jwksInFlight;
+let lastForcedRefreshMilliseconds = Number.NEGATIVE_INFINITY;
 
 class AuthenticationError extends Error {}
 
@@ -32,23 +36,46 @@ async function loadSigningKeys(fetchImpl, nowMilliseconds, forceRefresh = false)
     return jwksCache.keys;
   }
 
-  const response = await fetchImpl(JWKS_URL, {
-    headers: { accept: "application/json" }
+  if (jwksInFlight) {
+    return jwksInFlight;
+  }
+
+  if (
+    forceRefresh &&
+    jwksCache &&
+    nowMilliseconds - lastForcedRefreshMilliseconds < JWKS_MIN_REFRESH_MILLISECONDS
+  ) {
+    return jwksCache.keys;
+  }
+
+  if (forceRefresh) {
+    lastForcedRefreshMilliseconds = nowMilliseconds;
+  }
+
+  jwksInFlight = (async () => {
+    const response = await fetchImpl(JWKS_URL, {
+      headers: { accept: "application/json" },
+      signal: AbortSignal.timeout(JWKS_FETCH_TIMEOUT_MILLISECONDS)
+    });
+    if (!response.ok) {
+      throw new Error(`Microsoft Entra signing-key request failed with HTTP ${response.status}`);
+    }
+
+    const body = await response.json();
+    if (!Array.isArray(body.keys)) {
+      throw new Error("Microsoft Entra signing-key response did not contain keys");
+    }
+
+    jwksCache = {
+      keys: body.keys,
+      expiresAt: nowMilliseconds + JWKS_CACHE_MILLISECONDS
+    };
+    return body.keys;
+  })().finally(() => {
+    jwksInFlight = undefined;
   });
-  if (!response.ok) {
-    throw new Error(`Microsoft Entra signing-key request failed with HTTP ${response.status}`);
-  }
 
-  const body = await response.json();
-  if (!Array.isArray(body.keys)) {
-    throw new Error("Microsoft Entra signing-key response did not contain keys");
-  }
-
-  jwksCache = {
-    keys: body.keys,
-    expiresAt: nowMilliseconds + JWKS_CACHE_MILLISECONDS
-  };
-  return body.keys;
+  return jwksInFlight;
 }
 
 async function verifyAccessToken(token, options = {}) {
@@ -169,6 +196,8 @@ function unauthorizedResponse() {
 
 function resetKeyCacheForTests() {
   jwksCache = undefined;
+  jwksInFlight = undefined;
+  lastForcedRefreshMilliseconds = Number.NEGATIVE_INFINITY;
 }
 
 module.exports = {
