@@ -1,0 +1,52 @@
+{
+  "$schema": "https://aka.ms/winget-rest-source.schema.json",
+  "data": {
+    "packageIdentifier": "MidtownTechnologyGroup.Voquill",
+    "versions": [
+      {
+        "packageVersion": "1.7.7",
+        "defaultLocale": {
+          "packageLocale": "en-US",
+          "publisher": "Midtown Technology Group LLC",
+          "publisherUrl": "https://midtowntg.com",
+          "publisherSupportUrl": "https://github.com/MTG-Thomas/voquill/issues",
+          "author": "Jack Brumley, MTG-Thomas fork maintainers",
+          "packageName": "Voquill",
+          "packageUrl": "https://github.com/MTG-Thomas/voquill",
+          "license": "AGPL-3.0-only",
+          "licenseUrl": "https://github.com/MTG-Thomas/voquill/blob/main/LICENSE",
+          "copyright": "Copyright (c) Voquill contributors",
+          "shortDescription": "Push-to-talk dictation app with local transcription support",
+          "description": "Cross-platform push-to-talk dictation app with Whisper-powered speech recognition and MTG fork enhancements for local Windows dictation workflows.",
+          "moniker": "voquill",
+          "tags": [
+            "dictation",
+            "speech-to-text",
+            "whisper",
+            "openvino",
+            "npu",
+            "productivity",
+            "midtown"
+          ],
+          "releaseNotes": "Upstream 1.7.4 and 1.7.5 on the MTG fork: KDE global shortcuts under org.voquill.voquill, config saves that leave an unreadable file alone, Wayland input-session restore, and Linux packages built on glibc 2.35.",
+          "releaseNotesUrl": "https://github.com/MTG-Thomas/voquill/releases/tag/mtg-v1.7.7"
+        },
+        "installers": [
+          {
+            "architecture": "x64",
+            "installerType": "wix",
+            "scope": "machine",
+            "installerUrl": "https://github.com/MTG-Thomas/voquill/releases/download/mtg-v1.7.7/Voquill_1.7.7_x64_en-US.msi",
+            "installerSha256": "4d611536b4565682a01e13e2d0c2f9f5c280a44529f6c600e17083406a49f66c",
+            "upgradeBehavior": "install",
+            "installerSwitches": {
+              "silent": "/qn",
+              "silentWithProgress": "/qb"
+            },
+            "productCode": "{D5AB901B-EB96-49B9-80F0-07C263853412}"
+          }
+        ]
+      }
+    ]
+  }
+}

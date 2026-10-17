@@ -21,10 +21,10 @@
     "productivity",
     "midtown"
   ],
-  "releaseNotes": "Hotkey registration diagnostics (names conflicting apps), idempotent shortcut binding across Windows/macOS/X11, verified MSI major-upgrade path, OpenVINO NPU model catalog coverage.",
+  "releaseNotes": "Upstream 1.7.4 and 1.7.5 on the MTG fork: KDE global shortcuts under org.voquill.voquill, config saves that leave an unreadable file alone, Wayland input-session restore, and Linux packages built on glibc 2.35.",
   "repo": "MTG-Thomas/voquill",
   "releaseTagTemplate": "mtg-v{version}",
-  "assetName": "Voquill_1.7.4_x64_en-US.msi",
+  "assetName": "Voquill_1.7.7_x64_en-US.msi",
   "architecture": "x64",
   "installerType": "wix",
   "scope": "machine",

@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
 
 PackageIdentifier: MidtownTechnologyGroup.Voquill
-PackageVersion: 1.7.4
+PackageVersion: 1.7.7
 PackageLocale: en-US
 Publisher: Midtown Technology Group LLC
 PublisherUrl: https://midtowntg.com
@@ -25,7 +25,7 @@ Tags:
   - productivity
   - midtown
 ReleaseNotes: |
-  Hotkey registration diagnostics (names conflicting apps), idempotent shortcut binding across Windows/macOS/X11, verified MSI major-upgrade path, OpenVINO NPU model catalog coverage.
-ReleaseNotesUrl: https://github.com/MTG-Thomas/voquill/releases/tag/mtg-v1.7.4
+  Upstream 1.7.4 and 1.7.5 on the MTG fork: KDE global shortcuts under org.voquill.voquill, config saves that leave an unreadable file alone, Wayland input-session restore, and Linux packages built on glibc 2.35.
+ReleaseNotesUrl: https://github.com/MTG-Thomas/voquill/releases/tag/mtg-v1.7.7
 ManifestType: defaultLocale
 ManifestVersion: 1.5.0
