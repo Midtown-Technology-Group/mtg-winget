@@ -6,6 +6,8 @@ if (Test-Path $site) {
 }
 
 New-Item -ItemType Directory -Force $site | Out-Null
+# Azure Static Web Apps refuses a payload that has no default document.
+Copy-Item (Join-Path $PSScriptRoot "..\\index.html") $site
 Copy-Item (Join-Path $PSScriptRoot "..\\source.json") $site
 Copy-Item (Join-Path $PSScriptRoot "..\\information.json") $site
 Copy-Item (Join-Path $PSScriptRoot "..\\staticwebapp.config.json") $site
