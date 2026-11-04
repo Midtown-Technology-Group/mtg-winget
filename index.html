@@ -8,8 +8,11 @@
 <body>
   <h1>MTG Winget Source</h1>
   <p>This endpoint is a private Winget REST source for Midtown Technology Group internal tools.</p>
-  <pre><code>winget source add -n mtg-tools -a https://winget.midtowntg.com/api -t Microsoft.Rest
+  <pre><code>winget source add -n mtg-tools -a https://winget.midtowntg.com/api -t Microsoft.Rest --explicit
 winget source update mtg-tools
-winget install midtowntechnologygroup.voquill</code></pre>
+winget install --id MidtownTechnologyGroup.Voquill --source mtg-tools</code></pre>
+  <p>Register the source with <code>--explicit</code> so ordinary WinGet commands
+  never query it; name it with <code>--source mtg-tools</code> for Midtown
+  packages only.</p>
 </body>
 </html>
