@@ -11,6 +11,12 @@ package is published by this feed and `--source winget` otherwise.
 The private feed publishes only `MidtownTechnologyGroup.*` identifiers, so the
 publisher prefix decides the route without contacting the feed first.
 
+`--source` already removes cross-source ambiguity, so the script does not add
+`--exact`: WinGet's exact matching is case-sensitive, and an identifier typed in
+a different case would then fail even though routing worked. Without `--exact`
+the identifier match is case-insensitive and WinGet still prompts when a query
+is ambiguous inside the pinned source.
+
 .PARAMETER PackageId
 WinGet package identifier, for example MidtownTechnologyGroup.Halocli.
 
@@ -61,7 +67,7 @@ else {
     $publicSourceName
 }
 
-$argumentList = @($Command, "--id", $PackageId, "--exact", "--source", $sourceName) +
+$argumentList = @($Command, "--id", $PackageId, "--source", $sourceName) +
     @($WingetArguments | Where-Object { $_ })
 
 if ($DryRun) {
