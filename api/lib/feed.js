@@ -67,15 +67,13 @@ function searchResponse(data, extra = {}) {
 }
 
 function information() {
+  // Deliberately no Authentication node. WinGet builds the source authenticator
+  // and acquires a token before it sends any discovery request, so advertising
+  // Entra would prompt and fail on every command instead of letting WinGet pick
+  // this source per package. The feed is anonymous by design.
   return response({
     SourceIdentifier: "mtg-tools",
-    ServerSupportedVersions: ["1.7.0"],
-    Authentication: {
-      AuthenticationType: "microsoftEntraId",
-      MicrosoftEntraIdAuthenticationInfo: {
-        Resource: "https://management.core.windows.net/"
-      }
-    }
+    ServerSupportedVersions: ["1.7.0"]
   });
 }
 
@@ -259,6 +257,10 @@ function valueMatches(candidate, searchText, matchType) {
   }
 }
 
+function isProductCodeField(packageMatchField) {
+  return String(packageMatchField || "").trim().toLowerCase() === "productcode";
+}
+
 function packageMatchesFilter(pkg, filter, manifestCache) {
   const searchText = pickRequestMatchText(filter);
   if (!searchText) {
@@ -270,7 +272,14 @@ function packageMatchesFilter(pkg, filter, manifestCache) {
     return false;
   }
 
-  return values.some((value) => valueMatches(value, searchText, filter?.RequestMatch?.MatchType));
+  // Discovery is anonymous, so prefix matching on ProductCode would let a caller
+  // recover a value one character at a time. Exact matching keeps the field
+  // usable for installed-package correlation without exposing the value.
+  const matchType = isProductCodeField(filter?.PackageMatchField)
+    ? "Exact"
+    : filter?.RequestMatch?.MatchType;
+
+  return values.some((value) => valueMatches(value, searchText, matchType));
 }
 
 function packageMatchesSearch(pkg, searchText, matchType) {
