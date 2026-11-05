@@ -14,7 +14,7 @@ Use [.github/workflows/update-package.yml](.github/workflows/update-package.yml)
 
 ## Client and release boundaries
 
-The source is `Microsoft.Rest`; retain that distinction from `Microsoft.PreIndexed.Package` sources. `--explicit` changes discovery, and `--source` pins a client operation. Do not remove or re-register a user's sources as a validation shortcut.
+The source is `Microsoft.Rest`; retain that distinction from `Microsoft.PreIndexed.Package` sources. The feed is anonymous on purpose: `information` must not advertise authentication, because WinGet builds a source authenticator and acquires a token before it sends discovery, so an Entra-advertising source makes every WinGet command authenticate and fail (the WinGet client also cannot obtain an Azure Resource Manager token in this tenant: `AADSTS65002`). Keep `mtg-tools` registered implicitly (no `--explicit`) so discovery selects it per package. `ProductCode` filters stay exact-match only, because prefix matching on an anonymous endpoint is a value-recovery oracle. `--source` pins a client operation; `scripts/install-package.ps1` does that pinning when determinism matters. Do not remove or re-register a user's sources as a validation shortcut.
 
 Publishing the feed or dispatching updates affects downstream installations. Name the exact package and environment, retain Azure authentication boundaries, and verify deployed feed/client behavior independently when authorized. Keep deployment and dispatch credentials out of committed files and logs.
 

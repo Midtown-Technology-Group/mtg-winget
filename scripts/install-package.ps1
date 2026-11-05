@@ -3,10 +3,11 @@
 Runs a WinGet command against the source that owns the package.
 
 .DESCRIPTION
-`mtg-tools` is registered as an explicit WinGet source, so ordinary WinGet
-commands never query the private feed. This script restores the convenient
-behaviour for Midtown packages only: it pins `--source mtg-tools` when the
-package is published by this feed and `--source winget` otherwise.
+WinGet already selects `mtg-tools` per package when the source is registered
+implicitly, so this script is only for commands that must be deterministic: it
+pins `--source mtg-tools` when the package is published by this feed and
+`--source winget` otherwise, and it also works on machines where the source is
+registered as explicit.
 
 The private feed publishes only `MidtownTechnologyGroup.*` identifiers, so the
 publisher prefix decides the route without contacting the feed first.

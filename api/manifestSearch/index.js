@@ -1,11 +1,10 @@
 const feed = require("../lib/feed");
-const auth = require("../lib/auth");
 
+// Anonymous on purpose. WinGet resolves a source's package list before it can
+// select that source for a package, so discovery has to answer without an
+// authentication challenge; advertising Entra makes WinGet authenticate before
+// every command instead of picking this source per package.
 module.exports = async function (context, req) {
-  if (!await auth.authorize(context, req)) {
-    return;
-  }
-
   try {
     context.res = {
       status: 200,
