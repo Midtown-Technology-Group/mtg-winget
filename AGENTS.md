@@ -14,7 +14,7 @@ Use [.github/workflows/update-package.yml](.github/workflows/update-package.yml)
 
 ## Client and release boundaries
 
-The source is `Microsoft.Rest`; retain that distinction from `Microsoft.PreIndexed.Package` sources. `--explicit` changes discovery, and `--source` pins a client operation. Do not remove or re-register a user's sources as a validation shortcut.
+The source is `Microsoft.Rest`; retain that distinction from `Microsoft.PreIndexed.Package` sources. Keep `mtg-tools` registered implicitly (no `--explicit`) so WinGet discovery selects it per package, and keep `manifestSearch` anonymous so an unauthenticated client can tell "not published here" apart from "sign in first"; without both, every public command either prompts for Entra or loses dynamic selection. `packageManifests` stays behind Entra because it carries installer URLs, hashes, and ProductCodes. `--source` pins a client operation; `scripts/install-package.ps1` does that pinning when determinism matters. Do not remove or re-register a user's sources as a validation shortcut.
 
 Publishing the feed or dispatching updates affects downstream installations. Name the exact package and environment, retain Azure authentication boundaries, and verify deployed feed/client behavior independently when authorized. Keep deployment and dispatch credentials out of committed files and logs.
 

@@ -255,17 +255,22 @@ const manifestSearchHandler = require("../manifestSearch");
 
   const unauthenticatedContext = {};
   await manifestSearchHandler(unauthenticatedContext, { body: {} });
-  assert.strictEqual(unauthenticatedContext.res.status, 401);
+  assert.strictEqual(unauthenticatedContext.res.status, 200, "discovery must stay anonymous");
+  assert.ok(
+    packageIdentifiers(unauthenticatedContext.res.body).includes("MidtownTechnologyGroup.Voquill"),
+    "anonymous discovery must still list published packages"
+  );
 
-  const originalAuthorize = auth.authorize;
-  auth.authorize = async () => true;
+  const packageManifestHandler = require("../packageManifests");
+  const unauthenticatedManifestContext = {};
+  await packageManifestHandler(unauthenticatedManifestContext, {
+    bindingData: { PackageIdentifier: "MidtownTechnologyGroup.Voquill" }
+  });
+  assert.strictEqual(unauthenticatedManifestContext.res.status, 401, "manifests must require a token");
+
   const context = {};
-  try {
-    await manifestSearchHandler(context, { body: { Filters: Array.from({ length: 33 }, () => ({})) } });
-    assert.strictEqual(context.res.status, 400);
-  } finally {
-    auth.authorize = originalAuthorize;
-  }
+  await manifestSearchHandler(context, { body: { Filters: Array.from({ length: 33 }, () => ({})) } });
+  assert.strictEqual(context.res.status, 400);
   console.log("feed tests passed");
 })().catch((error) => {
   console.error(error);

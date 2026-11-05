@@ -1,11 +1,9 @@
 const feed = require("../lib/feed");
-const auth = require("../lib/auth");
 
+// Discovery stays anonymous so WinGet can decide per package whether this source
+// publishes it. Package manifests, which carry installer URLs, hashes, and
+// ProductCodes, still require a Microsoft Entra token.
 module.exports = async function (context, req) {
-  if (!await auth.authorize(context, req)) {
-    return;
-  }
-
   try {
     context.res = {
       status: 200,
